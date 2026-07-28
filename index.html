@@ -316,6 +316,158 @@
           0 0 45px rgba(114, 230, 207, 0.16);
       }
 
+      /* Light instrument-room treatment inspired by the reference screens. */
+      body.light-ui {
+        color-scheme: light;
+        color: #24302d;
+        background: #d7ddda;
+      }
+
+      body.light-ui::before {
+        display: none;
+      }
+
+      body.light-ui .shell {
+        background: #e7ebe8 !important;
+        border-color: rgba(18, 28, 25, 0.28) !important;
+        box-shadow:
+          0 24px 60px rgba(27, 39, 35, 0.22),
+          0 0 0 6px rgba(28, 37, 35, 0.1);
+      }
+
+      body.light-ui header,
+      body.light-ui footer {
+        background: #f4f6f3 !important;
+        color: #1a2421;
+      }
+
+      body.light-ui main > aside {
+        background: #b9c2bf !important;
+        border-color: rgba(18, 28, 25, 0.3) !important;
+        box-shadow: inset -1px 0 rgba(255, 255, 255, 0.72);
+      }
+
+      body.light-ui .dark-panel {
+        color: #1e2926;
+        background: #edf1ee !important;
+        box-shadow: inset 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      body.light-ui .paper-panel {
+        background: #fafbf8;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.95),
+          0 6px 18px rgba(34, 47, 43, 0.12),
+          0 0 0 4px rgba(45, 56, 53, 0.07);
+      }
+
+      body.light-ui .screen-glare::after {
+        display: none;
+      }
+
+      body.light-ui .hardware-key {
+        color: #303a38;
+        background: #c4ccca;
+        border-color: rgba(22, 30, 28, 0.6) !important;
+        box-shadow:
+          inset 1px 1px rgba(255, 255, 255, 0.9),
+          inset -1px -2px rgba(38, 48, 45, 0.18),
+          0 3px 6px rgba(23, 32, 29, 0.26);
+      }
+
+      body.light-ui .hardware-key::after {
+        background: #53615d;
+        box-shadow: 0 1px rgba(255, 255, 255, 0.7);
+      }
+
+      body.light-ui .hardware-key:active,
+      body.light-ui .hardware-key.active {
+        color: #075f52;
+        background: #a9e4d8;
+      }
+
+      body.light-ui .text-white {
+        color: #17211e !important;
+      }
+
+      body.light-ui [class*="text-white/"] {
+        color: #64706d !important;
+      }
+
+      body.light-ui .text-mint {
+        color: #087466 !important;
+      }
+
+      body.light-ui .text-cyan {
+        color: #27748a !important;
+      }
+
+      body.light-ui .text-warning {
+        color: #c64435 !important;
+      }
+
+      body.light-ui [class*="border-white/"] {
+        border-color: rgba(30, 43, 39, 0.17) !important;
+      }
+
+      body.light-ui [class*="bg-white/"] {
+        background-color: rgba(25, 38, 34, 0.07) !important;
+      }
+
+      body.light-ui [class*="bg-black/"] {
+        background-color: rgba(22, 32, 29, 0.12) !important;
+      }
+
+      body.light-ui .data-row:hover,
+      body.light-ui .data-row.selected {
+        color: #075f52;
+        background: rgba(77, 125, 114, 0.12);
+      }
+
+      body.light-ui .data-row:hover .text-white,
+      body.light-ui .data-row.selected .text-white {
+        color: #075f52 !important;
+      }
+
+      body.light-ui .channel {
+        background: rgba(255, 255, 255, 0.38);
+      }
+
+      body.light-ui .channel:hover {
+        background: rgba(114, 230, 207, 0.13);
+      }
+
+      body.light-ui .tab:not(.active) {
+        color: #52605c;
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      body.light-ui .tab.active {
+        color: #0e1916 !important;
+        background: #72e6cf;
+      }
+
+      body.light-ui #track-button,
+      body.light-ui #scan-button {
+        background-color: rgba(114, 230, 207, 0.13);
+      }
+
+      body.light-ui #track-button:hover,
+      body.light-ui #scan-button:hover {
+        color: #10201c !important;
+        background-color: #72e6cf;
+      }
+
+      body.light-ui table {
+        background: rgba(255, 255, 255, 0.42);
+      }
+
+      body.light-ui #toast {
+        color: #f0fff9;
+        background: rgba(17, 35, 30, 0.95);
+        border-color: rgba(114, 230, 207, 0.75);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
@@ -327,7 +479,7 @@
       }
     </style>
   </head>
-  <body class="min-h-screen overflow-x-hidden font-mono text-[#c8d0ce] selection:bg-mint selection:text-ink">
+  <body class="light-ui min-h-screen overflow-x-hidden font-mono text-[#24302d] selection:bg-mint selection:text-ink">
     <div class="mx-auto flex min-h-screen w-full max-w-[1760px] items-center justify-center p-0 md:p-4 xl:p-7">
       <main
         id="app-shell"
