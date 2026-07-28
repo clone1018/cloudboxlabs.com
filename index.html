@@ -1,1219 +1,1198 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="FIELD/01 helps startups and existing companies build and launch software products in weeks, using senior product experience and AI-native engineering."
-    />
-    <title>FIELD/01 — Build your product in weeks</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ink: "#15201d",
-              paper: "#f7f8f5",
-              chassis: "#d7ddda",
-              mint: "#72e6cf",
-              mintdark: "#087466",
-              signal: "#ff6b57",
-            },
-            fontFamily: {
-              mono: [
-                "SFMono-Regular",
-                "Cascadia Code",
-                "Liberation Mono",
-                "Menlo",
-                "monospace",
-              ],
-              display: [
-                "Arial Narrow",
-                "Aptos Display",
-                "Helvetica Neue",
-                "Arial",
-                "sans-serif",
-              ],
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FIELD/01 helps startups and existing companies build and launch software products in weeks, using senior product experience and AI-native engineering." />
+  <title>CLOUDBOX // LABS — Build your product in weeks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#15201d",
+            paper: "#f7f8f5",
+            chassis: "#d7ddda",
+            mint: "#72e6cf",
+            mintdark: "#087466",
+            signal: "#ff6b57",
+          },
+          fontFamily: {
+            mono: [
+              "SFMono-Regular",
+              "Cascadia Code",
+              "Liberation Mono",
+              "Menlo",
+              "monospace",
+            ],
+            display: [
+              "Arial Narrow",
+              "Aptos Display",
+              "Helvetica Neue",
+              "Arial",
+              "sans-serif",
+            ],
           },
         },
-      };
-    </script>
-    <style>
-      :root {
-        color-scheme: light;
-        --ink: #15201d;
-        --paper: #f7f8f5;
-        --chassis: #d7ddda;
-        --mint: #72e6cf;
-        --mint-dark: #087466;
-        --signal: #ff6b57;
-      }
+      },
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #15201d;
+      --paper: #f7f8f5;
+      --chassis: #d7ddda;
+      --mint: #72e6cf;
+      --mint-dark: #087466;
+      --signal: #ff6b57;
+    }
 
-      html {
-        scroll-behavior: smooth;
-      }
+    html {
+      scroll-behavior: smooth;
+    }
 
-      body {
-        margin: 0;
-        background: var(--chassis);
-        color: var(--ink);
-      }
+    body {
+      margin: 0;
+      background: var(--chassis);
+      color: var(--ink);
+    }
 
-      * {
-        scrollbar-color: #7d8985 #d7ddda;
-        scrollbar-width: thin;
-      }
+    * {
+      scrollbar-color: #7d8985 #d7ddda;
+      scrollbar-width: thin;
+    }
 
-      .site-frame {
-        background: #edf0ed;
-        border: 1px solid rgba(21, 32, 29, 0.34);
-        box-shadow:
-          0 28px 70px rgba(25, 36, 33, 0.2),
-          0 0 0 6px rgba(21, 32, 29, 0.08);
-      }
+    .site-frame {
+      background: #edf0ed;
+      border: 1px solid rgba(21, 32, 29, 0.34);
+      box-shadow:
+        0 28px 70px rgba(25, 36, 33, 0.2),
+        0 0 0 6px rgba(21, 32, 29, 0.08);
+    }
 
-      .hardware-rail {
-        background: #b8c1be;
-        border-right: 1px solid rgba(21, 32, 29, 0.34);
-        box-shadow: inset -1px 0 rgba(255, 255, 255, 0.7);
-      }
+    .hardware-rail {
+      background: #b8c1be;
+      border-right: 1px solid rgba(21, 32, 29, 0.34);
+      box-shadow: inset -1px 0 rgba(255, 255, 255, 0.7);
+    }
 
-      .hardware-key {
-        position: relative;
-        background: #cbd2d0;
-        border: 1px solid rgba(21, 32, 29, 0.54);
-        box-shadow:
-          inset 1px 1px rgba(255, 255, 255, 0.9),
-          inset -1px -2px rgba(40, 53, 49, 0.16),
-          0 3px 6px rgba(28, 39, 36, 0.2);
-        transition:
-          transform 140ms ease,
-          background 140ms ease,
-          color 140ms ease;
-      }
+    .hardware-key {
+      position: relative;
+      background: #cbd2d0;
+      border: 1px solid rgba(21, 32, 29, 0.54);
+      box-shadow:
+        inset 1px 1px rgba(255, 255, 255, 0.9),
+        inset -1px -2px rgba(40, 53, 49, 0.16),
+        0 3px 6px rgba(28, 39, 36, 0.2);
+      transition:
+        transform 140ms ease,
+        background 140ms ease,
+        color 140ms ease;
+    }
 
-      .hardware-key::after {
-        content: "";
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        width: 38%;
-        height: 2px;
-        background: #66736f;
-      }
+    .hardware-key::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38%;
+      height: 2px;
+      background: #66736f;
+    }
 
-      .hardware-key:hover,
-      .hardware-key.active {
-        color: #075f52;
-        background: #a9e4d8;
-      }
+    .hardware-key:hover,
+    .hardware-key.active {
+      color: #075f52;
+      background: #a9e4d8;
+    }
 
-      .hardware-key.active::before {
-        content: "";
-        position: absolute;
-        right: 50%;
-        bottom: 12px;
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: var(--mint-dark);
-        transform: translateX(50%);
-        animation: rail-pulse 1.5s ease-in-out infinite;
-      }
+    .hardware-key.active::before {
+      content: "";
+      position: absolute;
+      right: 50%;
+      bottom: 12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--mint-dark);
+      transform: translateX(50%);
+      animation: rail-pulse 1.5s ease-in-out infinite;
+    }
 
-      @keyframes rail-pulse {
-        50% {
-          box-shadow: 0 0 0 6px rgba(8, 116, 102, 0.12);
-          opacity: 0.55;
-        }
+    @keyframes rail-pulse {
+      50% {
+        box-shadow: 0 0 0 6px rgba(8, 116, 102, 0.12);
+        opacity: 0.55;
       }
+    }
 
-      .hardware-key:active {
-        transform: translateY(1px);
-      }
+    .hardware-key:active {
+      transform: translateY(1px);
+    }
 
-      .cut-panel {
-        clip-path: polygon(
-          0 10px,
+    .cut-panel {
+      clip-path: polygon(0 10px,
           10px 0,
           calc(100% - 10px) 0,
           100% 10px,
           100% calc(100% - 10px),
           calc(100% - 10px) 100%,
           10px 100%,
-          0 calc(100% - 10px)
-        );
+          0 calc(100% - 10px));
+    }
+
+    .screen {
+      background: #fafbf8;
+      border: 1px solid rgba(21, 32, 29, 0.34);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.92),
+        0 8px 22px rgba(26, 38, 34, 0.1);
+    }
+
+    .eyebrow {
+      font-size: 0.6875rem;
+      line-height: 1;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* Keep dense instrument text readable without losing the technical scale. */
+    body .text-\[7px\] {
+      font-size: 9px !important;
+    }
+
+    body .text-\[8px\] {
+      font-size: 10px !important;
+    }
+
+    body .text-\[9px\] {
+      font-size: 11px !important;
+    }
+
+    body .text-\[10px\] {
+      font-size: 12px !important;
+    }
+
+    .section-index {
+      display: grid;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      border: 1px solid rgba(21, 32, 29, 0.34);
+      color: var(--mint-dark);
+      font-size: 0.625rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--mint-dark);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    .cta-primary {
+      background: var(--mint);
+      border: 1px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      transition:
+        box-shadow 140ms ease,
+        transform 140ms ease;
+    }
+
+    .cta-primary:hover {
+      box-shadow: 1px 1px 0 var(--ink);
+      transform: translate(2px, 2px);
+    }
+
+    .cta-secondary {
+      background: #f9faf7;
+      border: 1px solid rgba(21, 32, 29, 0.38);
+    }
+
+    .cta-secondary:hover {
+      border-color: var(--mint-dark);
+      color: var(--mint-dark);
+    }
+
+    .profile-key.active {
+      color: #075f52;
+      border-color: var(--mint-dark);
+      background: #dff7f0;
+    }
+
+    .signal-track {
+      position: relative;
+    }
+
+    .signal-track::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      right: 0;
+      left: 0;
+      height: 1px;
+      background: rgba(21, 32, 29, 0.25);
+    }
+
+    .signal-progress {
+      position: absolute;
+      z-index: 0;
+      top: 17px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--mint-dark);
+    }
+
+    .signal-node {
+      position: relative;
+      z-index: 1;
+      background: #edf0ed;
+    }
+
+    .signal-node>span:first-child {
+      transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .signal-node.reached>span:first-child {
+      border-color: var(--mint-dark);
+      background: var(--mint);
+      box-shadow: 0 0 0 4px rgba(114, 230, 207, 0.16);
+    }
+
+    .flow-row {
+      position: relative;
+      width: 100%;
+      border-top: 1px solid rgba(21, 32, 29, 0.25);
+      transition:
+        color 150ms ease,
+        background 150ms ease;
+    }
+
+    .flow-row:last-child {
+      border-bottom: 1px solid rgba(21, 32, 29, 0.25);
+    }
+
+    .flow-row::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: 1.25rem;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      color: rgba(21, 32, 29, 0.35);
+    }
+
+    .flow-row:hover,
+    .flow-row.active {
+      color: #075f52;
+      background: rgba(114, 230, 207, 0.15);
+    }
+
+    .flow-row.active::after {
+      color: var(--mint-dark);
+    }
+
+    .handoff-line {
+      position: relative;
+    }
+
+    .handoff-line::after {
+      content: "";
+      position: absolute;
+      top: 1.1rem;
+      right: -50%;
+      width: 100%;
+      height: 1px;
+      background: rgba(21, 32, 29, 0.28);
+    }
+
+    .handoff-line:last-child::after {
+      display: none;
+    }
+
+    .timeline-stop {
+      cursor: pointer;
+    }
+
+    .timeline-stop .timeline-node {
+      transition:
+        background 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        transform 150ms ease;
+    }
+
+    .timeline-stop.complete .timeline-node {
+      border-color: var(--mint-dark);
+      background: #b9eadf;
+    }
+
+    .timeline-stop.active .timeline-node {
+      border-color: var(--ink);
+      background: var(--mint);
+      box-shadow: 0 0 0 5px rgba(114, 230, 207, 0.18);
+      transform: scale(1.08);
+    }
+
+    .timeline-range {
+      width: 100%;
+      height: 18px;
+      appearance: none;
+      background: transparent;
+      cursor: ew-resize;
+    }
+
+    .timeline-range::-webkit-slider-runnable-track {
+      height: 3px;
+      border: 1px solid rgba(21, 32, 29, 0.3);
+      background: #c8d0cd;
+    }
+
+    .timeline-range::-webkit-slider-thumb {
+      width: 17px;
+      height: 17px;
+      margin-top: -8px;
+      appearance: none;
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      background: var(--mint);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .timeline-range::-moz-range-track {
+      height: 3px;
+      border: 1px solid rgba(21, 32, 29, 0.3);
+      background: #c8d0cd;
+    }
+
+    .timeline-range::-moz-range-thumb {
+      width: 17px;
+      height: 17px;
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      background: var(--mint);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .boot-item {
+      animation: boot-in 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      animation-delay: var(--boot-delay, 0ms);
+    }
+
+    @keyframes boot-in {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
       }
 
-      .screen {
-        background: #fafbf8;
-        border: 1px solid rgba(21, 32, 29, 0.34);
-        box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.92),
-          0 8px 22px rgba(26, 38, 34, 0.1);
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      .eyebrow {
-        font-size: 0.625rem;
-        line-height: 1;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
+    .chart-shell {
+      background: #fafbf8;
+      border: 1px solid rgba(21, 32, 29, 0.26);
+    }
 
-      .section-index {
-        display: grid;
-        width: 2rem;
-        height: 2rem;
-        place-items: center;
-        border: 1px solid rgba(21, 32, 29, 0.34);
-        color: var(--mint-dark);
-        font-size: 0.625rem;
-      }
+    .field {
+      width: 100%;
+      border: 1px solid rgba(21, 32, 29, 0.34);
+      border-radius: 0;
+      background: #fbfcfa;
+      color: var(--ink);
+      outline: none;
+    }
 
-      .status-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 999px;
-        background: var(--mint-dark);
-        animation: pulse 1.8s ease-in-out infinite;
-      }
+    .field:focus {
+      border-color: var(--mint-dark);
+      box-shadow: inset 3px 0 var(--mint);
+    }
 
-      @keyframes pulse {
-        50% {
-          opacity: 0.35;
-        }
-      }
+    .vertical-type {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
 
-      .cta-primary {
-        background: var(--mint);
-        border: 1px solid var(--ink);
-        box-shadow: 3px 3px 0 var(--ink);
-        transition:
-          box-shadow 140ms ease,
-          transform 140ms ease;
-      }
-
-      .cta-primary:hover {
-        box-shadow: 1px 1px 0 var(--ink);
-        transform: translate(2px, 2px);
-      }
-
-      .cta-secondary {
-        background: #f9faf7;
-        border: 1px solid rgba(21, 32, 29, 0.38);
-      }
-
-      .cta-secondary:hover {
-        border-color: var(--mint-dark);
-        color: var(--mint-dark);
-      }
-
-      .profile-key.active {
-        color: #075f52;
-        border-color: var(--mint-dark);
-        background: #dff7f0;
-      }
-
-      .signal-track {
-        position: relative;
-      }
-
-      .signal-track::before {
-        content: "";
-        position: absolute;
-        top: 18px;
-        right: 0;
-        left: 0;
-        height: 1px;
-        background: rgba(21, 32, 29, 0.25);
-      }
-
-      .signal-progress {
-        position: absolute;
-        z-index: 0;
-        top: 17px;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: var(--mint-dark);
-      }
-
-      .signal-node {
-        position: relative;
-        z-index: 1;
-        background: #edf0ed;
-      }
-
-      .signal-node > span:first-child {
-        transition:
-          background 160ms ease,
-          border-color 160ms ease,
-          box-shadow 160ms ease;
-      }
-
-      .signal-node.reached > span:first-child {
-        border-color: var(--mint-dark);
-        background: var(--mint);
-        box-shadow: 0 0 0 4px rgba(114, 230, 207, 0.16);
-      }
-
-      .flow-row {
-        position: relative;
-        width: 100%;
-        border-top: 1px solid rgba(21, 32, 29, 0.25);
-        transition:
-          color 150ms ease,
-          background 150ms ease;
-      }
-
-      .flow-row:last-child {
-        border-bottom: 1px solid rgba(21, 32, 29, 0.25);
-      }
-
+    @media (max-width: 767px) {
       .flow-row::after {
-        content: "→";
-        position: absolute;
-        top: 50%;
-        right: 1.25rem;
-        transform: translateY(-50%);
-        font-size: 1.25rem;
-        color: rgba(21, 32, 29, 0.35);
+        right: 0.75rem;
       }
+    }
 
-      .flow-row:hover,
-      .flow-row.active {
-        color: #075f52;
-        background: rgba(114, 230, 207, 0.15);
-      }
-
-      .flow-row.active::after {
-        color: var(--mint-dark);
-      }
-
-      .handoff-line {
-        position: relative;
-      }
-
-      .handoff-line::after {
-        content: "";
-        position: absolute;
-        top: 1.1rem;
-        right: -50%;
-        width: 100%;
-        height: 1px;
-        background: rgba(21, 32, 29, 0.28);
-      }
-
-      .handoff-line:last-child::after {
-        display: none;
-      }
-
-      .timeline-stop {
-        cursor: pointer;
-      }
-
-      .timeline-stop .timeline-node {
-        transition:
-          background 150ms ease,
-          border-color 150ms ease,
-          box-shadow 150ms ease,
-          transform 150ms ease;
-      }
-
-      .timeline-stop.complete .timeline-node {
-        border-color: var(--mint-dark);
-        background: #b9eadf;
-      }
-
-      .timeline-stop.active .timeline-node {
-        border-color: var(--ink);
-        background: var(--mint);
-        box-shadow: 0 0 0 5px rgba(114, 230, 207, 0.18);
-        transform: scale(1.08);
-      }
-
-      .timeline-range {
-        width: 100%;
-        height: 18px;
-        appearance: none;
-        background: transparent;
-        cursor: ew-resize;
-      }
-
-      .timeline-range::-webkit-slider-runnable-track {
-        height: 3px;
-        border: 1px solid rgba(21, 32, 29, 0.3);
-        background: #c8d0cd;
-      }
-
-      .timeline-range::-webkit-slider-thumb {
-        width: 17px;
-        height: 17px;
-        margin-top: -8px;
-        appearance: none;
-        border: 1px solid var(--ink);
-        border-radius: 0;
-        background: var(--mint);
-        box-shadow: 2px 2px 0 var(--ink);
-      }
-
-      .timeline-range::-moz-range-track {
-        height: 3px;
-        border: 1px solid rgba(21, 32, 29, 0.3);
-        background: #c8d0cd;
-      }
-
-      .timeline-range::-moz-range-thumb {
-        width: 17px;
-        height: 17px;
-        border: 1px solid var(--ink);
-        border-radius: 0;
-        background: var(--mint);
-        box-shadow: 2px 2px 0 var(--ink);
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
 
       .boot-item {
-        animation: boot-in 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        animation-delay: var(--boot-delay, 0ms);
+        animation-delay: 0ms !important;
       }
 
-      @keyframes boot-in {
-        from {
-          opacity: 0;
-          transform: translateY(18px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
+    }
+  </style>
+</head>
 
-      .chart-shell {
-        background: #fafbf8;
-        border: 1px solid rgba(21, 32, 29, 0.26);
-      }
+<body class="font-mono selection:bg-mint selection:text-ink">
+  <div class="mx-auto w-full max-w-[1660px] p-0 md:p-5 xl:p-8">
+    <div class="site-frame grid min-h-screen grid-cols-1 md:grid-cols-[74px_minmax(0,1fr)]">
+      <aside class="hardware-rail sticky top-0 hidden h-screen flex-col gap-3 p-3 md:flex" aria-label="Page sections">
+        <a href="#top" class="grid aspect-square place-items-center border border-ink/45 bg-[#e7ebe8] text-[9px] font-black" aria-label="FIELD/01 home">
+          CB/L
+        </a>
+        <a href="#fit" class="hardware-key active flex flex-1 items-center justify-center text-[8px]" data-rail="fit">
+          <span class="-rotate-90 whitespace-nowrap">FIT</span>
+        </a>
+        <a href="#delivery" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="delivery">
+          <span class="-rotate-90 whitespace-nowrap">DELIVERY</span>
+        </a>
+        <a href="#leverage" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="leverage">
+          <span class="-rotate-90 whitespace-nowrap">LEVERAGE</span>
+        </a>
+        <a href="#contact" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="contact">
+          <span class="-rotate-90 whitespace-nowrap">START</span>
+        </a>
+        <div class="flex h-20 flex-col items-center justify-end gap-2 text-[7px] text-ink/50">
+          <span class="status-dot"></span>
+          <span class="-rotate-90 whitespace-nowrap">AVAILABLE</span>
+        </div>
+      </aside>
 
-      .field {
-        width: 100%;
-        border: 1px solid rgba(21, 32, 29, 0.34);
-        border-radius: 0;
-        background: #fbfcfa;
-        color: var(--ink);
-        outline: none;
-      }
+      <div class="min-w-0">
+        <header class="sticky top-0 z-40 border-b border-ink/20 bg-[#f4f6f3]/95 backdrop-blur-sm">
+          <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
+            <a href="#top" class="flex items-center gap-3" aria-label="FIELD/01 home">
+              <span class="grid h-9 w-9 place-items-center border border-ink/50 bg-mint text-[9px] font-black md:hidden">CB/L</span>
+              <span>
+                <span class="block font-display text-base font-black tracking-[0.09em]">CLOUDBOX // LABS</span>
+                <span class="hidden text-[7px] tracking-[0.13em] text-ink/50 sm:block">PRODUCT ENGINEERING / FAST</span>
+              </span>
+            </a>
 
-      .field:focus {
-        border-color: var(--mint-dark);
-        box-shadow: inset 3px 0 var(--mint);
-      }
+            <div class="hidden items-center gap-8 lg:flex">
+              <span class="text-[8px] text-ink/45">NYC / DISTRIBUTED</span>
+              <nav class="flex items-center gap-7 text-[9px] tracking-[0.1em]" aria-label="Primary navigation">
+                <a class="hover:text-mintdark" href="#fit">WHAT WE BUILD</a>
+                <a class="hover:text-mintdark" href="#delivery">HOW WE SHIP</a>
+                <a class="hover:text-mintdark" href="#leverage">WHY IT WORKS</a>
+              </nav>
+            </div>
 
-      .vertical-type {
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-      }
-
-      @media (max-width: 767px) {
-        .flow-row::after {
-          right: 0.75rem;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .boot-item {
-          animation-delay: 0ms !important;
-        }
-
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
-  </head>
-
-  <body class="font-mono selection:bg-mint selection:text-ink">
-    <div class="mx-auto w-full max-w-[1660px] p-0 md:p-5 xl:p-8">
-      <div class="site-frame grid min-h-screen grid-cols-1 md:grid-cols-[74px_minmax(0,1fr)]">
-        <aside class="hardware-rail sticky top-0 hidden h-screen flex-col gap-3 p-3 md:flex" aria-label="Page sections">
-          <a
-            href="#top"
-            class="grid aspect-square place-items-center border border-ink/45 bg-[#e7ebe8] text-[9px] font-black"
-            aria-label="FIELD/01 home"
-          >
-            F/01
-          </a>
-          <a href="#fit" class="hardware-key active flex flex-1 items-center justify-center text-[8px]" data-rail="fit">
-            <span class="-rotate-90 whitespace-nowrap">FIT</span>
-          </a>
-          <a href="#delivery" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="delivery">
-            <span class="-rotate-90 whitespace-nowrap">DELIVERY</span>
-          </a>
-          <a href="#leverage" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="leverage">
-            <span class="-rotate-90 whitespace-nowrap">LEVERAGE</span>
-          </a>
-          <a href="#contact" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="contact">
-            <span class="-rotate-90 whitespace-nowrap">START</span>
-          </a>
-          <div class="flex h-20 flex-col items-center justify-end gap-2 text-[7px] text-ink/50">
-            <span class="status-dot"></span>
-            <span class="-rotate-90 whitespace-nowrap">AVAILABLE</span>
+            <div class="flex items-center gap-3">
+              <div class="hidden items-center gap-2 text-[8px] text-ink/55 sm:flex">
+                <span class="status-dot"></span>
+                NEW PROJECTS: OPEN
+              </div>
+              <a href="#contact" class="cta-primary px-4 py-2.5 text-[9px] font-bold tracking-[0.1em]">START →</a>
+              <button id="menu-button" class="grid h-9 w-9 place-items-center border border-ink/30 text-lg lg:hidden" aria-label="Toggle menu" aria-expanded="false">
+                ≡
+              </button>
+            </div>
           </div>
-        </aside>
+          <nav id="mobile-menu" class="hidden grid-cols-3 border-t border-ink/15 bg-[#f4f6f3] p-3 lg:hidden">
+            <a class="border border-ink/15 p-3 text-center text-[8px]" href="#fit">WHAT</a>
+            <a class="border border-ink/15 p-3 text-center text-[8px]" href="#delivery">HOW</a>
+            <a class="border border-ink/15 p-3 text-center text-[8px]" href="#leverage">WHY</a>
+          </nav>
+        </header>
 
-        <div class="min-w-0">
-          <header class="sticky top-0 z-40 border-b border-ink/20 bg-[#f4f6f3]/95 backdrop-blur-sm">
-            <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
-              <a href="#top" class="flex items-center gap-3" aria-label="FIELD/01 home">
-                <span class="grid h-9 w-9 place-items-center border border-ink/50 bg-mint text-[9px] font-black md:hidden">F/01</span>
-                <span>
-                  <span class="block font-display text-base font-black tracking-[0.09em]">FIELD/01</span>
-                  <span class="hidden text-[7px] tracking-[0.13em] text-ink/50 sm:block">PRODUCT ENGINEERING / FAST</span>
-                </span>
-              </a>
+        <main id="top">
+          <section id="hero" class="relative overflow-hidden border-b border-ink/20 px-4 py-14 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+            <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+              <aside class="col-span-2 hidden border-r border-ink/20 pr-5 xl:block">
+                <div class="eyebrow text-mintdark">Mission brief</div>
+                <div class="mt-8 space-y-7 text-[8px] leading-4 text-ink/50">
+                  <div>
+                    <span class="block text-ink/30">OBJECTIVE</span>
+                    <strong class="mt-1 block text-ink">SHIP VALUE</strong>
+                  </div>
+                  <div>
+                    <span class="block text-ink/30">TIME UNIT</span>
+                    <strong class="mt-1 block text-ink">WEEKS</strong>
+                  </div>
+                  <div>
+                    <span class="block text-ink/30">TEAM SHAPE</span>
+                    <strong class="mt-1 block text-ink">SMALL / SENIOR</strong>
+                  </div>
+                  <div>
+                    <span class="block text-ink/30">OWNERSHIP</span>
+                    <strong class="mt-1 block text-ink">YOURS</strong>
+                  </div>
+                </div>
+                <div class="mt-14 h-24 w-px bg-ink/20"></div>
+                <div class="vertical-type mt-4 text-[7px] tracking-[0.2em] text-ink/35">FIELD NOTE / 0001</div>
+              </aside>
 
-              <div class="hidden items-center gap-8 lg:flex">
-                <span class="text-[8px] text-ink/45">NYC / DISTRIBUTED</span>
-                <nav class="flex items-center gap-7 text-[9px] tracking-[0.1em]" aria-label="Primary navigation">
-                  <a class="hover:text-mintdark" href="#fit">WHAT WE BUILD</a>
-                  <a class="hover:text-mintdark" href="#delivery">HOW WE SHIP</a>
-                  <a class="hover:text-mintdark" href="#leverage">WHY IT WORKS</a>
-                </nav>
+              <div class="col-span-12 xl:col-span-7">
+                <div class="flex items-center gap-3 xl:hidden">
+                  <span class="section-index">00</span>
+                  <span class="eyebrow text-mintdark">Senior product team / AI-native delivery</span>
+                </div>
+                <h1 class="mt-7 font-display font-black leading-[0.77] tracking-[-0.07em] xl:mt-0">
+                  <span class="boot-item block text-[clamp(5rem,11vw,11rem)]" style="--boot-delay: 80ms">BUILD</span>
+                  <span class="boot-item ml-[8%] block text-[clamp(3.6rem,7.8vw,8rem)]" style="--boot-delay: 180ms">YOUR PRODUCT</span>
+                  <span class="boot-item mr-[2%] mt-3 block text-right text-[clamp(4rem,9vw,9rem)] text-mintdark" style="--boot-delay: 300ms">IN WEEKS.</span>
+                </h1>
+
+                <div class="boot-item ml-auto mt-10 max-w-2xl border-l-4 border-mint pl-5" style="--boot-delay: 430ms">
+                  <p class="font-display text-xl font-semibold leading-snug sm:text-2xl">
+                    From idea to production software—without spending months assembling a team.
+                  </p>
+                  <p class="mt-4 max-w-xl text-[10px] leading-5 text-ink/60">
+                    We bring senior product, design, and engineering people who can define the right product, build it, and put it in
+                    customers’ hands.
+                  </p>
+                </div>
+
+                <div class="boot-item ml-auto mt-8 flex max-w-2xl flex-wrap gap-3" style="--boot-delay: 520ms">
+                  <a href="#contact" class="cta-primary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">
+                    TELL US WHAT YOU’RE BUILDING →
+                  </a>
+                  <a href="#fit" class="cta-secondary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">CHECK THE FIT</a>
+                </div>
               </div>
 
-              <div class="flex items-center gap-3">
-                <div class="hidden items-center gap-2 text-[8px] text-ink/55 sm:flex">
+              <aside class="boot-item cut-panel screen col-span-12 self-end p-4 sm:p-5 xl:col-span-3 xl:-mb-14" style="--boot-delay: 360ms" aria-label="Project output summary">
+                <div class="flex items-center justify-between border-b border-ink/25 pb-3">
+                  <div>
+                    <div class="eyebrow text-ink/40">Build output</div>
+                    <div class="mt-2 text-[10px] font-bold">CUSTOMER VALUE / LIVE</div>
+                  </div>
                   <span class="status-dot"></span>
-                  NEW PROJECTS: OPEN
                 </div>
-                <a href="#contact" class="cta-primary px-4 py-2.5 text-[9px] font-bold tracking-[0.1em]">START →</a>
-                <button
-                  id="menu-button"
-                  class="grid h-9 w-9 place-items-center border border-ink/30 text-lg lg:hidden"
-                  aria-label="Toggle menu"
-                  aria-expanded="false"
-                >
-                  ≡
-                </button>
+
+                <div class="mt-5">
+                  <span class="eyebrow text-mintdark">You arrive with</span>
+                  <p class="mt-2 font-display text-2xl font-black">AN IDEA OR A STUCK PROJECT</p>
+                </div>
+
+                <div class="my-5 flex items-center gap-3">
+                  <span class="h-px flex-1 bg-ink/25"></span>
+                  <span class="grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[9px] font-black">CB/L</span>
+                  <span class="h-px flex-1 bg-ink/25"></span>
+                </div>
+
+                <div>
+                  <span class="eyebrow text-mintdark">You leave with</span>
+                  <p class="mt-2 font-display text-2xl font-black">A WORKING PRODUCT YOU OWN</p>
+                </div>
+
+                <div class="mt-5 grid grid-cols-2 gap-px border border-ink/20 bg-ink/20 text-[8px]">
+                  <div class="bg-[#fafbf8] p-3">
+                    <span class="text-ink/40">FIRST TESTABLE</span>
+                    <strong class="mt-2 block text-base">~1 WEEK</strong>
+                  </div>
+                  <div class="bg-[#fafbf8] p-3">
+                    <span class="text-ink/40">CORE TEAM</span>
+                    <strong class="mt-2 block text-base">3–5</strong>
+                  </div>
+                </div>
+              </aside>
+
+              <div class="col-span-12 mt-2 border-y border-ink/20 py-4 xl:col-start-3 xl:col-span-10 xl:mt-8">
+                <div id="hero-signal" class="signal-track grid grid-cols-4 text-center">
+                  <span id="signal-progress" class="signal-progress" aria-hidden="true"></span>
+                  <div class="signal-node" data-signal-node>
+                    <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">01</span>
+                    <span class="mt-2 block text-[7px]">IDEA</span>
+                  </div>
+                  <div class="signal-node" data-signal-node>
+                    <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">02</span>
+                    <span class="mt-2 block text-[7px]">WORKING</span>
+                  </div>
+                  <div class="signal-node" data-signal-node>
+                    <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">03</span>
+                    <span class="mt-2 block text-[7px]">PRODUCTION</span>
+                  </div>
+                  <div class="signal-node" data-signal-node>
+                    <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[8px]">04</span>
+                    <span class="mt-2 block text-[7px]">CUSTOMER VALUE</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <nav id="mobile-menu" class="hidden grid-cols-3 border-t border-ink/15 bg-[#f4f6f3] p-3 lg:hidden">
-              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#fit">WHAT</a>
-              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#delivery">HOW</a>
-              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#leverage">WHY</a>
-            </nav>
-          </header>
+          </section>
 
-          <main id="top">
-            <section id="hero" class="relative overflow-hidden border-b border-ink/20 px-4 py-14 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
-                <aside class="col-span-2 hidden border-r border-ink/20 pr-5 xl:block">
-                  <div class="eyebrow text-mintdark">Mission brief</div>
-                  <div class="mt-8 space-y-7 text-[8px] leading-4 text-ink/50">
-                    <div>
-                      <span class="block text-ink/30">OBJECTIVE</span>
-                      <strong class="mt-1 block text-ink">SHIP VALUE</strong>
-                    </div>
-                    <div>
-                      <span class="block text-ink/30">TIME UNIT</span>
-                      <strong class="mt-1 block text-ink">WEEKS</strong>
-                    </div>
-                    <div>
-                      <span class="block text-ink/30">TEAM SHAPE</span>
-                      <strong class="mt-1 block text-ink">SMALL / SENIOR</strong>
-                    </div>
-                    <div>
-                      <span class="block text-ink/30">OWNERSHIP</span>
-                      <strong class="mt-1 block text-ink">YOURS</strong>
-                    </div>
-                  </div>
-                  <div class="mt-14 h-24 w-px bg-ink/20"></div>
-                  <div class="vertical-type mt-4 text-[7px] tracking-[0.2em] text-ink/35">FIELD NOTE / 0001</div>
-                </aside>
+          <section id="fit" class="scroll-mt-20 border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+            <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+              <div class="col-span-12 lg:col-span-4">
+                <div class="flex items-center gap-3">
+                  <span class="section-index">01</span>
+                  <span class="eyebrow text-mintdark">Where we create value</span>
+                </div>
+                <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
+                  PICK THE<br />STARTING<br />POINT.
+                </h2>
+                <p class="mt-6 max-w-sm text-[10px] leading-5 text-ink/60">
+                  Different context, same goal: get useful software into the world sooner and learn before you overinvest.
+                </p>
+              </div>
 
-                <div class="col-span-12 xl:col-span-7">
-                  <div class="flex items-center gap-3 xl:hidden">
-                    <span class="section-index">00</span>
-                    <span class="eyebrow text-mintdark">Senior product team / AI-native delivery</span>
-                  </div>
-                  <h1 class="mt-7 font-display font-black leading-[0.77] tracking-[-0.07em] xl:mt-0">
-                    <span class="boot-item block text-[clamp(5rem,11vw,11rem)]" style="--boot-delay: 80ms">BUILD</span>
-                    <span class="boot-item ml-[8%] block text-[clamp(3.6rem,7.8vw,8rem)]" style="--boot-delay: 180ms">YOUR PRODUCT</span>
-                    <span class="boot-item mr-[2%] mt-3 block text-right text-[clamp(4rem,9vw,9rem)] text-mintdark" style="--boot-delay: 300ms">IN WEEKS.</span>
-                  </h1>
-
-                  <div class="boot-item ml-auto mt-10 max-w-2xl border-l-4 border-mint pl-5" style="--boot-delay: 430ms">
-                    <p class="font-display text-xl font-semibold leading-snug sm:text-2xl">
-                      From idea to production software—without spending months assembling a team.
-                    </p>
-                    <p class="mt-4 max-w-xl text-[10px] leading-5 text-ink/60">
-                      We bring senior product, design, and engineering people who can define the right product, build it, and put it in
-                      customers’ hands.
-                    </p>
-                  </div>
-
-                  <div class="boot-item ml-auto mt-8 flex max-w-2xl flex-wrap gap-3" style="--boot-delay: 520ms">
-                    <a href="#contact" class="cta-primary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">
-                      TELL US WHAT YOU’RE BUILDING →
-                    </a>
-                    <a href="#fit" class="cta-secondary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">CHECK THE FIT</a>
-                  </div>
+              <div class="col-span-12 lg:col-span-8 lg:pt-12">
+                <div role="group" aria-label="Choose a project type">
+                  <button class="flow-row active grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="startup">
+                    <span class="text-[10px] text-mintdark">A/01</span>
+                    <strong class="font-display text-2xl sm:text-3xl">NEW STARTUP</strong>
+                    <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Idea → product → first customers</span>
+                  </button>
+                  <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="company">
+                    <span class="text-[10px] text-mintdark">A/02</span>
+                    <strong class="font-display text-2xl sm:text-3xl">INTERNAL GREENFIELD</strong>
+                    <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Mandate → working system → internal owner</span>
+                  </button>
+                  <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="existing">
+                    <span class="text-[10px] text-mintdark">A/03</span>
+                    <strong class="font-display text-2xl sm:text-3xl">EXISTING PRODUCT</strong>
+                    <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Blocked work → focused push → shipped value</span>
+                  </button>
                 </div>
 
-                <aside class="boot-item cut-panel screen col-span-12 self-end p-4 sm:p-5 xl:col-span-3 xl:-mb-14" style="--boot-delay: 360ms" aria-label="Project output summary">
-                  <div class="flex items-center justify-between border-b border-ink/25 pb-3">
-                    <div>
-                      <div class="eyebrow text-ink/40">Build output</div>
-                      <div class="mt-2 text-[10px] font-bold">CUSTOMER VALUE / LIVE</div>
-                    </div>
-                    <span class="status-dot"></span>
+                <div class="mt-6 grid border border-ink/25 bg-[#edf0ed] lg:grid-cols-[1fr_220px]">
+                  <div class="p-5 sm:p-7">
+                    <div id="profile-label" class="eyebrow text-mintdark">Selected / new startup</div>
+                    <h3 id="profile-title" class="mt-4 font-display text-3xl font-black sm:text-4xl">GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.</h3>
+                    <p id="profile-copy" class="mt-4 max-w-2xl text-[10px] leading-5 text-ink/60">
+                      We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.
+                    </p>
                   </div>
-
-                  <div class="mt-5">
-                    <span class="eyebrow text-mintdark">You arrive with</span>
-                    <p class="mt-2 font-display text-2xl font-black">AN IDEA OR A STUCK PROJECT</p>
+                  <div class="border-t border-ink/20 bg-[#fafbf8] p-5 lg:border-l lg:border-t-0">
+                    <div class="eyebrow text-ink/40">What you get</div>
+                    <ul id="profile-results" class="mt-4 space-y-3 text-[9px] leading-4">
+                      <li>+ Working product</li>
+                      <li>+ Production foundation</li>
+                      <li>+ First user signal</li>
+                      <li>+ Full ownership</li>
+                    </ul>
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                  <div class="my-5 flex items-center gap-3">
-                    <span class="h-px flex-1 bg-ink/25"></span>
-                    <span class="grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[9px] font-black">F/01</span>
-                    <span class="h-px flex-1 bg-ink/25"></span>
-                  </div>
+          <section id="delivery" class="scroll-mt-20 border-b border-ink/20 bg-[#e3e8e5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+            <div class="grid grid-cols-12 gap-x-4 gap-y-12 lg:gap-x-6">
+              <div class="col-span-12 lg:col-span-5">
+                <div class="flex items-center gap-3">
+                  <span class="section-index">02</span>
+                  <span class="eyebrow text-mintdark">How work moves</span>
+                </div>
+                <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
+                  SHOW,<br />DON’T<br />STATUS.
+                </h2>
+                <p class="mt-6 max-w-md text-[10px] leading-5 text-ink/60">
+                  You work with the builders. Every week ends with something real to use, test, or release—not a progress presentation.
+                </p>
+              </div>
 
+              <div class="col-span-12 lg:col-span-7 lg:pt-10">
+                <div class="grid grid-cols-4 border-y border-ink/25 py-5 text-center" aria-label="Interactive delivery timeline">
+                  <button class="timeline-stop handoff-line active" data-timeline-step="0" aria-label="View day one">
+                    <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">D1</span>
+                    <strong class="mt-3 block text-[8px]">NARROW</strong>
+                  </button>
+                  <button class="timeline-stop handoff-line" data-timeline-step="1" aria-label="View week one">
+                    <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W1</span>
+                    <strong class="mt-3 block text-[8px]">TEST</strong>
+                  </button>
+                  <button class="timeline-stop handoff-line" data-timeline-step="2" aria-label="View build weeks">
+                    <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W2+</span>
+                    <strong class="mt-3 block text-[8px]">BUILD</strong>
+                  </button>
+                  <button class="timeline-stop handoff-line" data-timeline-step="3" aria-label="View production release">
+                    <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">LIVE</span>
+                    <strong class="mt-3 block text-[8px]">LEARN</strong>
+                  </button>
+                </div>
+
+                <div class="mt-5 grid gap-4 border border-ink/25 bg-[#f7f8f5] p-4 sm:grid-cols-[1fr_210px]">
                   <div>
-                    <span class="eyebrow text-mintdark">You leave with</span>
-                    <p class="mt-2 font-display text-2xl font-black">A WORKING PRODUCT YOU OWN</p>
-                  </div>
-
-                  <div class="mt-5 grid grid-cols-2 gap-px border border-ink/20 bg-ink/20 text-[8px]">
-                    <div class="bg-[#fafbf8] p-3">
-                      <span class="text-ink/40">FIRST TESTABLE</span>
-                      <strong class="mt-2 block text-base">~1 WEEK</strong>
+                    <div class="flex items-center justify-between text-[8px]">
+                      <label for="timeline-range" class="eyebrow text-ink/45">Scrub the build</label>
+                      <span id="timeline-date" class="font-bold text-mintdark">DAY 01</span>
                     </div>
-                    <div class="bg-[#fafbf8] p-3">
-                      <span class="text-ink/40">CORE TEAM</span>
-                      <strong class="mt-2 block text-base">3–5</strong>
+                    <input id="timeline-range" class="timeline-range mt-4" type="range" min="0" max="3" step="1" value="0" aria-valuetext="Day one: narrow the product" />
+                    <div class="mt-1 flex justify-between text-[7px] text-ink/35">
+                      <span>START</span><span>TEST</span><span>BUILD</span><span>LIVE</span>
                     </div>
                   </div>
-                </aside>
+                  <div class="border-t border-ink/20 pt-4 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+                    <div id="timeline-phase" class="eyebrow text-mintdark">Narrow the product</div>
+                    <p id="timeline-output" class="mt-2 text-[9px] leading-4 text-ink/60">The smallest valuable release is clear.</p>
+                  </div>
+                </div>
 
-                <div class="col-span-12 mt-2 border-y border-ink/20 py-4 xl:col-start-3 xl:col-span-10 xl:mt-8">
-                  <div id="hero-signal" class="signal-track grid grid-cols-4 text-center">
-                    <span id="signal-progress" class="signal-progress" aria-hidden="true"></span>
-                    <div class="signal-node" data-signal-node>
-                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">01</span>
-                      <span class="mt-2 block text-[7px]">IDEA</span>
-                    </div>
-                    <div class="signal-node" data-signal-node>
-                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">02</span>
-                      <span class="mt-2 block text-[7px]">WORKING</span>
-                    </div>
-                    <div class="signal-node" data-signal-node>
-                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">03</span>
-                      <span class="mt-2 block text-[7px]">PRODUCTION</span>
-                    </div>
-                    <div class="signal-node" data-signal-node>
-                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[8px]">04</span>
-                      <span class="mt-2 block text-[7px]">CUSTOMER VALUE</span>
-                    </div>
+                <div class="mt-6 border-l border-ink/30">
+                  <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                    <span class="eyebrow text-mintdark">You bring</span>
+                    <p class="font-display text-xl font-semibold">The opportunity, customer knowledge, and fast decisions.</p>
+                  </div>
+                  <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                    <span class="eyebrow text-mintdark">We own</span>
+                    <p class="font-display text-xl font-semibold">Product definition, design, engineering, launch, and momentum.</p>
+                  </div>
+                  <div class="grid gap-3 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                    <span class="eyebrow text-mintdark">You keep</span>
+                    <p class="font-display text-xl font-semibold">The software, infrastructure, knowledge, and next move.</p>
                   </div>
                 </div>
               </div>
-            </section>
 
-            <section id="fit" class="scroll-mt-20 border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
-                <div class="col-span-12 lg:col-span-4">
-                  <div class="flex items-center gap-3">
-                    <span class="section-index">01</span>
-                    <span class="eyebrow text-mintdark">Where we create value</span>
+              <div class="col-span-12 mt-3 lg:col-start-3 lg:col-span-10">
+                <div class="cut-panel grid border border-ink/30 bg-[#17211e] text-[#e4ebe8] md:grid-cols-[180px_1fr_1fr_1fr]">
+                  <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                    <div class="eyebrow text-mint">Typical signal</div>
+                    <div class="mt-5 text-4xl font-black text-mint">4–8</div>
+                    <div class="mt-1 text-[8px] text-white/50">WEEKS TO A MEANINGFUL RELEASE</div>
                   </div>
-                  <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
-                    PICK THE<br />STARTING<br />POINT.
-                  </h2>
-                  <p class="mt-6 max-w-sm text-[10px] leading-5 text-ink/60">
-                    Different context, same goal: get useful software into the world sooner and learn before you overinvest.
-                  </p>
-                </div>
-
-                <div class="col-span-12 lg:col-span-8 lg:pt-12">
-                  <div role="group" aria-label="Choose a project type">
-                    <button class="flow-row active grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="startup">
-                      <span class="text-[10px] text-mintdark">A/01</span>
-                      <strong class="font-display text-2xl sm:text-3xl">NEW STARTUP</strong>
-                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Idea → product → first customers</span>
-                    </button>
-                    <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="company">
-                      <span class="text-[10px] text-mintdark">A/02</span>
-                      <strong class="font-display text-2xl sm:text-3xl">INTERNAL GREENFIELD</strong>
-                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Mandate → working system → internal owner</span>
-                    </button>
-                    <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="existing">
-                      <span class="text-[10px] text-mintdark">A/03</span>
-                      <strong class="font-display text-2xl sm:text-3xl">EXISTING PRODUCT</strong>
-                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Blocked work → focused push → shipped value</span>
-                    </button>
+                  <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                    <span class="text-[8px] text-white/40">WEEK 01</span>
+                    <strong class="mt-3 block font-display text-xl">SOMETHING WORKS</strong>
+                    <p class="mt-2 text-[9px] leading-4 text-white/50">A real flow you can use and react to.</p>
                   </div>
-
-                  <div class="mt-6 grid border border-ink/25 bg-[#edf0ed] lg:grid-cols-[1fr_220px]">
-                    <div class="p-5 sm:p-7">
-                      <div id="profile-label" class="eyebrow text-mintdark">Selected / new startup</div>
-                      <h3 id="profile-title" class="mt-4 font-display text-3xl font-black sm:text-4xl">GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.</h3>
-                      <p id="profile-copy" class="mt-4 max-w-2xl text-[10px] leading-5 text-ink/60">
-                        We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.
-                      </p>
-                    </div>
-                    <div class="border-t border-ink/20 bg-[#fafbf8] p-5 lg:border-l lg:border-t-0">
-                      <div class="eyebrow text-ink/40">What you get</div>
-                      <ul id="profile-results" class="mt-4 space-y-3 text-[9px] leading-4">
-                        <li>+ Working product</li>
-                        <li>+ Production foundation</li>
-                        <li>+ First user signal</li>
-                        <li>+ Full ownership</li>
-                      </ul>
-                    </div>
+                  <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                    <span class="text-[8px] text-white/40">WEEKS 02–05</span>
+                    <strong class="mt-3 block font-display text-xl">THE SYSTEM FORMS</strong>
+                    <p class="mt-2 text-[9px] leading-4 text-white/50">Core features, integrations, tests, and deployment.</p>
+                  </div>
+                  <div class="p-5">
+                    <span class="text-[8px] text-white/40">RELEASE</span>
+                    <strong class="mt-3 block font-display text-xl">USERS CREATE SIGNAL</strong>
+                    <p class="mt-2 text-[9px] leading-4 text-white/50">You learn earlier and invest with better information.</p>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section id="delivery" class="scroll-mt-20 border-b border-ink/20 bg-[#e3e8e5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-              <div class="grid grid-cols-12 gap-x-4 gap-y-12 lg:gap-x-6">
-                <div class="col-span-12 lg:col-span-5">
-                  <div class="flex items-center gap-3">
-                    <span class="section-index">02</span>
-                    <span class="eyebrow text-mintdark">How work moves</span>
-                  </div>
-                  <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
-                    SHOW,<br />DON’T<br />STATUS.
-                  </h2>
-                  <p class="mt-6 max-w-md text-[10px] leading-5 text-ink/60">
-                    You work with the builders. Every week ends with something real to use, test, or release—not a progress presentation.
-                  </p>
-                </div>
+          <section id="leverage" class="scroll-mt-20 overflow-hidden border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+            <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+              <div class="col-span-12 flex items-center gap-3">
+                <span class="section-index">03</span>
+                <span class="eyebrow text-mintdark">Why a small team can move this fast</span>
+              </div>
 
-                <div class="col-span-12 lg:col-span-7 lg:pt-10">
-                  <div class="grid grid-cols-4 border-y border-ink/25 py-5 text-center" aria-label="Interactive delivery timeline">
-                    <button class="timeline-stop handoff-line active" data-timeline-step="0" aria-label="View day one">
-                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">D1</span>
-                      <strong class="mt-3 block text-[8px]">NARROW</strong>
-                    </button>
-                    <button class="timeline-stop handoff-line" data-timeline-step="1" aria-label="View week one">
-                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W1</span>
-                      <strong class="mt-3 block text-[8px]">TEST</strong>
-                    </button>
-                    <button class="timeline-stop handoff-line" data-timeline-step="2" aria-label="View build weeks">
-                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W2+</span>
-                      <strong class="mt-3 block text-[8px]">BUILD</strong>
-                    </button>
-                    <button class="timeline-stop handoff-line" data-timeline-step="3" aria-label="View production release">
-                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">LIVE</span>
-                      <strong class="mt-3 block text-[8px]">LEARN</strong>
-                    </button>
-                  </div>
+              <div class="col-span-12 lg:col-span-5">
+                <span class="eyebrow text-mintdark">Machine leverage</span>
+                <h2 class="mt-4 font-display text-[clamp(5rem,12vw,11rem)] font-black leading-[0.75] tracking-[-0.08em] text-mintdark">AI</h2>
+                <p class="mt-7 max-w-md font-display text-2xl font-semibold leading-tight">
+                  does more of the repetitive work.
+                </p>
+                <p class="mt-4 max-w-md text-[10px] leading-5 text-ink/60">
+                  We explore options, implement, test, document, and automate faster than a traditional team.
+                </p>
+              </div>
 
-                  <div class="mt-5 grid gap-4 border border-ink/25 bg-[#f7f8f5] p-4 sm:grid-cols-[1fr_210px]">
+              <div class="col-span-12 hidden place-items-center lg:col-span-1 lg:grid">
+                <div class="h-full w-px bg-ink/20"></div>
+              </div>
+
+              <div class="col-span-12 lg:col-span-6 lg:pt-20">
+                <span class="eyebrow text-mintdark">Human judgment</span>
+                <h2 class="mt-4 max-w-3xl font-display text-[clamp(3.6rem,7vw,7rem)] font-black leading-[0.82] tracking-[-0.06em]">
+                  EXPERIENCE
+                </h2>
+                <p class="mt-7 max-w-lg font-display text-2xl font-semibold leading-tight">
+                  decides what should exist and how it should hold up.
+                </p>
+                <p class="mt-4 max-w-lg text-[10px] leading-5 text-ink/60">
+                  Senior people choose the product, architecture, tradeoffs, quality bar, and path to market.
+                </p>
+              </div>
+
+              <div class="col-span-12 mt-6 grid gap-3 lg:col-start-3 lg:col-span-10 lg:grid-cols-[minmax(0,1fr)_250px]">
+                <div class="chart-shell p-4 sm:p-5">
+                  <div class="flex flex-wrap items-start justify-between gap-4 border-b border-ink/15 pb-3">
                     <div>
-                      <div class="flex items-center justify-between text-[8px]">
-                        <label for="timeline-range" class="eyebrow text-ink/45">Scrub the build</label>
-                        <span id="timeline-date" class="font-bold text-mintdark">DAY 01</span>
-                      </div>
-                      <input
-                        id="timeline-range"
-                        class="timeline-range mt-4"
-                        type="range"
-                        min="0"
-                        max="3"
-                        step="1"
-                        value="0"
-                        aria-valuetext="Day one: narrow the product"
-                      />
-                      <div class="mt-1 flex justify-between text-[7px] text-ink/35">
-                        <span>START</span><span>TEST</span><span>BUILD</span><span>LIVE</span>
-                      </div>
+                      <div class="eyebrow text-ink/40">Illustrative engagement model</div>
+                      <h3 class="mt-2 font-display text-xl font-black">VALUE RISES AS UNCERTAINTY FALLS</h3>
                     </div>
-                    <div class="border-t border-ink/20 pt-4 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
-                      <div id="timeline-phase" class="eyebrow text-mintdark">Narrow the product</div>
-                      <p id="timeline-output" class="mt-2 text-[9px] leading-4 text-ink/60">The smallest valuable release is clear.</p>
+                    <div class="flex gap-4 text-[8px]">
+                      <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-mintdark"></i> CUSTOMER VALUE</span>
+                      <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-signal"></i> UNCERTAINTY</span>
                     </div>
                   </div>
-
-                  <div class="mt-6 border-l border-ink/30">
-                    <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
-                      <span class="eyebrow text-mintdark">You bring</span>
-                      <p class="font-display text-xl font-semibold">The opportunity, customer knowledge, and fast decisions.</p>
-                    </div>
-                    <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
-                      <span class="eyebrow text-mintdark">We own</span>
-                      <p class="font-display text-xl font-semibold">Product definition, design, engineering, launch, and momentum.</p>
-                    </div>
-                    <div class="grid gap-3 py-5 pl-5 sm:grid-cols-[120px_1fr]">
-                      <span class="eyebrow text-mintdark">You keep</span>
-                      <p class="font-display text-xl font-semibold">The software, infrastructure, knowledge, and next move.</p>
-                    </div>
+                  <canvas id="value-chart" class="mt-3 h-[280px] w-full touch-none" width="900" height="280" role="img" aria-label="Illustrative line chart showing customer value increasing and product uncertainty decreasing over six weeks">
+                    Customer value rises while product uncertainty falls over a six-week illustrative engagement.
+                  </canvas>
+                  <div class="grid grid-cols-3 border-t border-ink/15 pt-3 text-[8px]">
+                    <span>POINT: <strong id="chart-week">WEEK 03</strong></span>
+                    <span class="text-center">VALUE: <strong id="chart-value" class="text-mintdark">52</strong></span>
+                    <span class="text-right">UNCERTAINTY: <strong id="chart-uncertainty" class="text-signal">43</strong></span>
                   </div>
                 </div>
 
-                <div class="col-span-12 mt-3 lg:col-start-3 lg:col-span-10">
-                  <div class="cut-panel grid border border-ink/30 bg-[#17211e] text-[#e4ebe8] md:grid-cols-[180px_1fr_1fr_1fr]">
-                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
-                      <div class="eyebrow text-mint">Typical signal</div>
-                      <div class="mt-5 text-4xl font-black text-mint">4–8</div>
-                      <div class="mt-1 text-[8px] text-white/50">WEEKS TO A MEANINGFUL RELEASE</div>
-                    </div>
-                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
-                      <span class="text-[8px] text-white/40">WEEK 01</span>
-                      <strong class="mt-3 block font-display text-xl">SOMETHING WORKS</strong>
-                      <p class="mt-2 text-[9px] leading-4 text-white/50">A real flow you can use and react to.</p>
-                    </div>
-                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
-                      <span class="text-[8px] text-white/40">WEEKS 02–05</span>
-                      <strong class="mt-3 block font-display text-xl">THE SYSTEM FORMS</strong>
-                      <p class="mt-2 text-[9px] leading-4 text-white/50">Core features, integrations, tests, and deployment.</p>
-                    </div>
-                    <div class="p-5">
-                      <span class="text-[8px] text-white/40">RELEASE</span>
-                      <strong class="mt-3 block font-display text-xl">USERS CREATE SIGNAL</strong>
-                      <p class="mt-2 text-[9px] leading-4 text-white/50">You learn earlier and invest with better information.</p>
-                    </div>
+                <div class="grid grid-rows-3 gap-px border border-ink/20 bg-ink/20">
+                  <div class="bg-[#eef1ee] p-5">
+                    <span class="eyebrow text-ink/40">Result 01</span>
+                    <strong class="mt-3 block font-display text-2xl">FEWER HIRES TO START</strong>
+                  </div>
+                  <div class="bg-[#eef1ee] p-5">
+                    <span class="eyebrow text-ink/40">Result 02</span>
+                    <strong class="mt-3 block font-display text-2xl">REAL FEEDBACK EARLIER</strong>
+                  </div>
+                  <div class="bg-[#eef1ee] p-5">
+                    <span class="eyebrow text-ink/40">Result 03</span>
+                    <strong class="mt-3 block font-display text-2xl">LESS RISK BEFORE SCALE</strong>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section id="leverage" class="scroll-mt-20 overflow-hidden border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
-                <div class="col-span-12 flex items-center gap-3">
-                  <span class="section-index">03</span>
-                  <span class="eyebrow text-mintdark">Why a small team can move this fast</span>
+          <section id="contact" class="scroll-mt-20 bg-[#cbd3d0] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+            <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+              <div class="col-span-12 lg:col-span-7">
+                <div class="flex items-center gap-3">
+                  <span class="section-index">04</span>
+                  <span class="eyebrow text-mintdark">Start here</span>
                 </div>
-
-                <div class="col-span-12 lg:col-span-5">
-                  <span class="eyebrow text-mintdark">Machine leverage</span>
-                  <h2 class="mt-4 font-display text-[clamp(5rem,12vw,11rem)] font-black leading-[0.75] tracking-[-0.08em] text-mintdark">AI</h2>
-                  <p class="mt-7 max-w-md font-display text-2xl font-semibold leading-tight">
-                    does more of the repetitive work.
+                <h2 class="mt-7 font-display text-[clamp(4rem,8.5vw,8.5rem)] font-black leading-[0.82] tracking-[-0.065em]">
+                  WHAT NEEDS<br />TO EXIST?
+                </h2>
+                <div class="mt-7 grid max-w-2xl gap-5 border-t border-ink/25 pt-5 sm:grid-cols-2">
+                  <p class="font-display text-xl font-semibold leading-snug">
+                    Tell us the idea, the hard part, and the date that matters.
                   </p>
-                  <p class="mt-4 max-w-md text-[10px] leading-5 text-ink/60">
-                    We explore options, implement, test, document, and automate faster than a traditional team.
+                  <p class="text-[9px] leading-5 text-ink/55">
+                    No deck, polished brief, or long sales process. We’ll tell you quickly if we can help and what we think the first move should be.
                   </p>
-                </div>
-
-                <div class="col-span-12 hidden place-items-center lg:col-span-1 lg:grid">
-                  <div class="h-full w-px bg-ink/20"></div>
-                </div>
-
-                <div class="col-span-12 lg:col-span-6 lg:pt-20">
-                  <span class="eyebrow text-mintdark">Human judgment</span>
-                  <h2 class="mt-4 max-w-3xl font-display text-[clamp(3.6rem,7vw,7rem)] font-black leading-[0.82] tracking-[-0.06em]">
-                    EXPERIENCE
-                  </h2>
-                  <p class="mt-7 max-w-lg font-display text-2xl font-semibold leading-tight">
-                    decides what should exist and how it should hold up.
-                  </p>
-                  <p class="mt-4 max-w-lg text-[10px] leading-5 text-ink/60">
-                    Senior people choose the product, architecture, tradeoffs, quality bar, and path to market.
-                  </p>
-                </div>
-
-                <div class="col-span-12 mt-6 grid gap-3 lg:col-start-3 lg:col-span-10 lg:grid-cols-[minmax(0,1fr)_250px]">
-                  <div class="chart-shell p-4 sm:p-5">
-                    <div class="flex flex-wrap items-start justify-between gap-4 border-b border-ink/15 pb-3">
-                      <div>
-                        <div class="eyebrow text-ink/40">Illustrative engagement model</div>
-                        <h3 class="mt-2 font-display text-xl font-black">VALUE RISES AS UNCERTAINTY FALLS</h3>
-                      </div>
-                      <div class="flex gap-4 text-[8px]">
-                        <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-mintdark"></i> CUSTOMER VALUE</span>
-                        <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-signal"></i> UNCERTAINTY</span>
-                      </div>
-                    </div>
-                    <canvas
-                      id="value-chart"
-                      class="mt-3 h-[280px] w-full touch-none"
-                      width="900"
-                      height="280"
-                      role="img"
-                      aria-label="Illustrative line chart showing customer value increasing and product uncertainty decreasing over six weeks"
-                    >
-                      Customer value rises while product uncertainty falls over a six-week illustrative engagement.
-                    </canvas>
-                    <div class="grid grid-cols-3 border-t border-ink/15 pt-3 text-[8px]">
-                      <span>POINT: <strong id="chart-week">WEEK 03</strong></span>
-                      <span class="text-center">VALUE: <strong id="chart-value" class="text-mintdark">52</strong></span>
-                      <span class="text-right">UNCERTAINTY: <strong id="chart-uncertainty" class="text-signal">43</strong></span>
-                    </div>
-                  </div>
-
-                  <div class="grid grid-rows-3 gap-px border border-ink/20 bg-ink/20">
-                    <div class="bg-[#eef1ee] p-5">
-                      <span class="eyebrow text-ink/40">Result 01</span>
-                      <strong class="mt-3 block font-display text-2xl">FEWER HIRES TO START</strong>
-                    </div>
-                    <div class="bg-[#eef1ee] p-5">
-                      <span class="eyebrow text-ink/40">Result 02</span>
-                      <strong class="mt-3 block font-display text-2xl">REAL FEEDBACK EARLIER</strong>
-                    </div>
-                    <div class="bg-[#eef1ee] p-5">
-                      <span class="eyebrow text-ink/40">Result 03</span>
-                      <strong class="mt-3 block font-display text-2xl">LESS RISK BEFORE SCALE</strong>
-                    </div>
-                  </div>
                 </div>
               </div>
-            </section>
 
-            <section id="contact" class="scroll-mt-20 bg-[#cbd3d0] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
-                <div class="col-span-12 lg:col-span-7">
-                  <div class="flex items-center gap-3">
-                    <span class="section-index">04</span>
-                    <span class="eyebrow text-mintdark">Start here</span>
-                  </div>
-                  <h2 class="mt-7 font-display text-[clamp(4rem,8.5vw,8.5rem)] font-black leading-[0.82] tracking-[-0.065em]">
-                    WHAT NEEDS<br />TO EXIST?
-                  </h2>
-                  <div class="mt-7 grid max-w-2xl gap-5 border-t border-ink/25 pt-5 sm:grid-cols-2">
-                    <p class="font-display text-xl font-semibold leading-snug">
-                      Tell us the idea, the hard part, and the date that matters.
-                    </p>
-                    <p class="text-[9px] leading-5 text-ink/55">
-                      No deck, polished brief, or long sales process. We’ll tell you quickly if we can help and what we think the first move should be.
-                    </p>
-                  </div>
+              <form id="contact-form" class="cut-panel screen col-span-12 p-4 sm:p-6 lg:col-span-5 lg:mt-20">
+                <div class="flex items-center justify-between border-b border-ink/20 pb-3">
+                  <div class="eyebrow text-ink/40">New build / BR-0001</div>
+                  <div class="flex items-center gap-2 text-[8px] text-mintdark"><span class="status-dot"></span> OPEN</div>
                 </div>
-
-                <form id="contact-form" class="cut-panel screen col-span-12 p-4 sm:p-6 lg:col-span-5 lg:mt-20">
-                  <div class="flex items-center justify-between border-b border-ink/20 pb-3">
-                    <div class="eyebrow text-ink/40">New build / BR-0001</div>
-                    <div class="flex items-center gap-2 text-[8px] text-mintdark"><span class="status-dot"></span> OPEN</div>
-                  </div>
-                  <div class="mt-5 grid gap-4 sm:grid-cols-2">
-                    <label class="text-[8px] tracking-[0.1em]">
-                      NAME
-                      <input class="field mt-2 px-3 py-3 text-[11px]" name="name" autocomplete="name" required />
-                    </label>
-                    <label class="text-[8px] tracking-[0.1em]">
-                      WORK EMAIL
-                      <input class="field mt-2 px-3 py-3 text-[11px]" type="email" name="email" autocomplete="email" required />
-                    </label>
-                  </div>
-                  <label class="mt-4 block text-[8px] tracking-[0.1em]">
-                    THE SHORT VERSION
-                    <textarea
-                      class="field mt-2 min-h-28 resize-y px-3 py-3 text-[11px] leading-5"
-                      name="brief"
-                      placeholder="We want to build… The hard part is… We need it by…"
-                      required
-                    ></textarea>
+                <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                  <label class="text-[8px] tracking-[0.1em]">
+                    NAME
+                    <input class="field mt-2 px-3 py-3 text-[11px]" name="name" autocomplete="name" required />
                   </label>
-                  <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                    <span class="text-[8px] text-ink/45">RESPONSE ≤ 1 BUSINESS DAY</span>
-                    <button class="cta-primary px-5 py-3.5 text-[9px] font-bold tracking-[0.1em]" type="submit">SEND →</button>
-                  </div>
-                  <div id="form-status" class="mt-4 hidden border border-mintdark/40 bg-[#dff7f0] p-3 text-[9px] text-mintdark" role="status"></div>
-                </form>
-
-                <div class="col-span-12 flex flex-wrap items-center justify-between gap-5 border-t border-ink/25 pt-5 text-[8px] text-ink/50">
-                  <span>FIELD/01 — PRODUCT ENGINEERING</span>
-                  <span>STARTUPS / GREENFIELD / ACCELERATION</span>
-                  <span>YOU OWN THE OUTPUT</span>
+                  <label class="text-[8px] tracking-[0.1em]">
+                    WORK EMAIL
+                    <input class="field mt-2 px-3 py-3 text-[11px]" type="email" name="email" autocomplete="email" required />
+                  </label>
                 </div>
+                <label class="mt-4 block text-[8px] tracking-[0.1em]">
+                  THE SHORT VERSION
+                  <textarea class="field mt-2 min-h-28 resize-y px-3 py-3 text-[11px] leading-5" name="brief" placeholder="We want to build… The hard part is… We need it by…" required></textarea>
+                </label>
+                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                  <span class="text-[8px] text-ink/45">RESPONSE ≤ 1 BUSINESS DAY</span>
+                  <button class="cta-primary px-5 py-3.5 text-[9px] font-bold tracking-[0.1em]" type="submit">SEND →</button>
+                </div>
+                <div id="form-status" class="mt-4 hidden border border-mintdark/40 bg-[#dff7f0] p-3 text-[9px] text-mintdark" role="status"></div>
+              </form>
+
+              <div class="col-span-12 flex flex-wrap items-center justify-between gap-5 border-t border-ink/25 pt-5 text-[8px] text-ink/50">
+                <span>FIELD/01 — PRODUCT ENGINEERING</span>
+                <span>STARTUPS / GREENFIELD / ACCELERATION</span>
+                <span>YOU OWN THE OUTPUT</span>
               </div>
-            </section>
-          </main>
-        </div>
+            </div>
+          </section>
+        </main>
       </div>
     </div>
+  </div>
 
-    <div
-      id="toast"
-      class="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 translate-y-3 border border-mint bg-[#17211e] px-4 py-3 text-[9px] tracking-[0.1em] text-mint opacity-0 shadow-xl transition-all"
-      role="status"
-      aria-live="polite"
-    ></div>
+  <div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 translate-y-3 border border-mint bg-[#17211e] px-4 py-3 text-[9px] tracking-[0.1em] text-mint opacity-0 shadow-xl transition-all" role="status" aria-live="polite"></div>
 
-    <script>
-      const profiles = {
-        startup: {
-          label: "Selected / new startup",
-          title: "GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.",
-          copy: "We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.",
-          results: ["+ Working product", "+ Production foundation", "+ First user signal", "+ Full ownership"],
-        },
-        company: {
-          label: "Selected / internal greenfield",
-          title: "CREATE MOMENTUM WITHOUT WAITING FOR PERFECT CONDITIONS.",
-          copy: "We form a focused delivery unit around the opportunity and build within your real security, data, and technology constraints.",
-          results: ["+ Focused delivery team", "+ Enterprise-ready fit", "+ Visible progress", "+ Clean handoff"],
-        },
-        existing: {
-          label: "Selected / existing product",
-          title: "SHIP THE IMPORTANT WORK YOUR TEAM CANNOT GET TO.",
-          copy: "We take ownership of the blocked outcome, solve the underlying constraint, and deliver without adding more load to your team.",
-          results: ["+ Critical work shipped", "+ Constraint removed", "+ Senior capacity", "+ Lower team pressure"],
-        },
-      };
+  <script>
+    const profiles = {
+      startup: {
+        label: "Selected / new startup",
+        title: "GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.",
+        copy: "We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.",
+        results: ["+ Working product", "+ Production foundation", "+ First user signal", "+ Full ownership"],
+      },
+      company: {
+        label: "Selected / internal greenfield",
+        title: "CREATE MOMENTUM WITHOUT WAITING FOR PERFECT CONDITIONS.",
+        copy: "We form a focused delivery unit around the opportunity and build within your real security, data, and technology constraints.",
+        results: ["+ Focused delivery team", "+ Enterprise-ready fit", "+ Visible progress", "+ Clean handoff"],
+      },
+      existing: {
+        label: "Selected / existing product",
+        title: "SHIP THE IMPORTANT WORK YOUR TEAM CANNOT GET TO.",
+        copy: "We take ownership of the blocked outcome, solve the underlying constraint, and deliver without adding more load to your team.",
+        results: ["+ Critical work shipped", "+ Constraint removed", "+ Senior capacity", "+ Lower team pressure"],
+      },
+    };
 
-      const timelineData = [
-        {
-          date: "DAY 01",
-          phase: "NARROW THE PRODUCT",
-          output: "The smallest valuable release is clear.",
-          aria: "Day one: narrow the product",
-        },
-        {
-          date: "WEEK 01",
-          phase: "TEST THE HARD PART",
-          output: "A working flow is in front of real people.",
-          aria: "Week one: test the hardest part",
-        },
-        {
-          date: "WEEKS 02–05",
-          phase: "BUILD THE REAL SYSTEM",
-          output: "Production features, integrations, and controls come online.",
-          aria: "Weeks two through five: build the production system",
-        },
-        {
-          date: "LIVE",
-          phase: "RELEASE + LEARN",
-          output: "Customers create evidence for the next investment.",
-          aria: "Live release: learn from customers",
-        },
-      ];
+    const timelineData = [
+      {
+        date: "DAY 01",
+        phase: "NARROW THE PRODUCT",
+        output: "The smallest valuable release is clear.",
+        aria: "Day one: narrow the product",
+      },
+      {
+        date: "WEEK 01",
+        phase: "TEST THE HARD PART",
+        output: "A working flow is in front of real people.",
+        aria: "Week one: test the hardest part",
+      },
+      {
+        date: "WEEKS 02–05",
+        phase: "BUILD THE REAL SYSTEM",
+        output: "Production features, integrations, and controls come online.",
+        aria: "Weeks two through five: build the production system",
+      },
+      {
+        date: "LIVE",
+        phase: "RELEASE + LEARN",
+        output: "Customers create evidence for the next investment.",
+        aria: "Live release: learn from customers",
+      },
+    ];
 
-      const toast = document.getElementById("toast");
-      let toastTimer;
+    const toast = document.getElementById("toast");
+    let toastTimer;
 
-      const showToast = (message) => {
-        toast.textContent = message;
-        toast.classList.remove("opacity-0", "translate-y-3");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => {
-          toast.classList.add("opacity-0", "translate-y-3");
-        }, 2000);
-      };
+    const showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.remove("opacity-0", "translate-y-3");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-3");
+      }, 2000);
+    };
 
-      document.querySelectorAll(".flow-row").forEach((button) => {
-        button.addEventListener("click", () => {
-          const profile = profiles[button.dataset.profile];
-          document.querySelectorAll(".flow-row").forEach((item) => item.classList.toggle("active", item === button));
-          document.getElementById("profile-label").textContent = profile.label;
-          document.getElementById("profile-title").textContent = profile.title;
-          document.getElementById("profile-copy").textContent = profile.copy;
-          document.getElementById("profile-results").innerHTML = profile.results.map((item) => `<li>${item}</li>`).join("");
-        });
+    document.querySelectorAll(".flow-row").forEach((button) => {
+      button.addEventListener("click", () => {
+        const profile = profiles[button.dataset.profile];
+        document.querySelectorAll(".flow-row").forEach((item) => item.classList.toggle("active", item === button));
+        document.getElementById("profile-label").textContent = profile.label;
+        document.getElementById("profile-title").textContent = profile.title;
+        document.getElementById("profile-copy").textContent = profile.copy;
+        document.getElementById("profile-results").innerHTML = profile.results.map((item) => `<li>${item}</li>`).join("");
       });
+    });
 
-      const timelineRange = document.getElementById("timeline-range");
-      const timelineStops = [...document.querySelectorAll(".timeline-stop")];
+    const timelineRange = document.getElementById("timeline-range");
+    const timelineStops = [...document.querySelectorAll(".timeline-stop")];
 
-      const setTimeline = (step) => {
-        const index = Number(step);
-        const point = timelineData[index];
-        timelineRange.value = String(index);
-        timelineRange.setAttribute("aria-valuetext", point.aria);
-        document.getElementById("timeline-date").textContent = point.date;
-        document.getElementById("timeline-phase").textContent = point.phase;
-        document.getElementById("timeline-output").textContent = point.output;
-        timelineStops.forEach((stop, stopIndex) => {
-          stop.classList.toggle("complete", stopIndex < index);
-          stop.classList.toggle("active", stopIndex === index);
-        });
-      };
-
-      timelineRange.addEventListener("input", (event) => setTimeline(event.target.value));
-      timelineStops.forEach((stop) => {
-        stop.addEventListener("click", () => setTimeline(stop.dataset.timelineStep));
+    const setTimeline = (step) => {
+      const index = Number(step);
+      const point = timelineData[index];
+      timelineRange.value = String(index);
+      timelineRange.setAttribute("aria-valuetext", point.aria);
+      document.getElementById("timeline-date").textContent = point.date;
+      document.getElementById("timeline-phase").textContent = point.phase;
+      document.getElementById("timeline-output").textContent = point.output;
+      timelineStops.forEach((stop, stopIndex) => {
+        stop.classList.toggle("complete", stopIndex < index);
+        stop.classList.toggle("active", stopIndex === index);
       });
+    };
 
-      const hero = document.getElementById("hero");
-      const signalProgress = document.getElementById("signal-progress");
-      const signalNodes = [...document.querySelectorAll("[data-signal-node]")];
-      let signalFrame;
+    timelineRange.addEventListener("input", (event) => setTimeline(event.target.value));
+    timelineStops.forEach((stop) => {
+      stop.addEventListener("click", () => setTimeline(stop.dataset.timelineStep));
+    });
 
-      const updateHeroSignal = () => {
-        signalFrame = null;
-        const heroTop = hero.offsetTop;
-        const travelled = window.scrollY + window.innerHeight * 0.2 - heroTop;
-        const progress = Math.max(0, Math.min(1, travelled / (hero.offsetHeight * 0.72)));
-        signalProgress.style.width = `${progress * 100}%`;
-        signalNodes.forEach((node, index) => {
-          const threshold = index / (signalNodes.length - 1);
-          node.classList.toggle("reached", progress + 0.04 >= threshold);
-        });
+    const hero = document.getElementById("hero");
+    const signalProgress = document.getElementById("signal-progress");
+    const signalNodes = [...document.querySelectorAll("[data-signal-node]")];
+    let signalFrame;
+
+    const updateHeroSignal = () => {
+      signalFrame = null;
+      const heroTop = hero.offsetTop;
+      const travelled = window.scrollY + window.innerHeight * 0.2 - heroTop;
+      const progress = Math.max(0, Math.min(1, travelled / (hero.offsetHeight * 0.72)));
+      signalProgress.style.width = `${progress * 100}%`;
+      signalNodes.forEach((node, index) => {
+        const threshold = index / (signalNodes.length - 1);
+        node.classList.toggle("reached", progress + 0.04 >= threshold);
+      });
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!signalFrame) signalFrame = requestAnimationFrame(updateHeroSignal);
+      },
+      { passive: true },
+    );
+    window.addEventListener("resize", updateHeroSignal);
+    updateHeroSignal();
+
+    const chart = document.getElementById("value-chart");
+    const chartContext = chart.getContext("2d");
+    const chartSeries = {
+      value: [8, 15, 30, 52, 72, 86, 94],
+      uncertainty: [95, 76, 61, 43, 30, 19, 12],
+    };
+    let chartIndex = 3;
+
+    const renderChart = () => {
+      const bounds = chart.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      chart.width = Math.round(bounds.width * ratio);
+      chart.height = Math.round(bounds.height * ratio);
+      chartContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+      chartContext.clearRect(0, 0, bounds.width, bounds.height);
+
+      const plot = {
+        left: 36,
+        top: 18,
+        right: bounds.width - 18,
+        bottom: bounds.height - 30,
       };
+      const plotWidth = plot.right - plot.left;
+      const plotHeight = plot.bottom - plot.top;
+      const xFor = (index) => plot.left + (index / 6) * plotWidth;
+      const yFor = (value) => plot.bottom - (value / 100) * plotHeight;
 
-      window.addEventListener(
-        "scroll",
-        () => {
-          if (!signalFrame) signalFrame = requestAnimationFrame(updateHeroSignal);
-        },
-        { passive: true },
-      );
-      window.addEventListener("resize", updateHeroSignal);
-      updateHeroSignal();
+      chartContext.font = "8px monospace";
+      chartContext.fillStyle = "rgba(21, 32, 29, 0.45)";
+      chartContext.strokeStyle = "rgba(21, 32, 29, 0.13)";
+      chartContext.lineWidth = 1;
 
-      const chart = document.getElementById("value-chart");
-      const chartContext = chart.getContext("2d");
-      const chartSeries = {
-        value: [8, 15, 30, 52, 72, 86, 94],
-        uncertainty: [95, 76, 61, 43, 30, 19, 12],
-      };
-      let chartIndex = 3;
-
-      const renderChart = () => {
-        const bounds = chart.getBoundingClientRect();
-        if (!bounds.width || !bounds.height) return;
-
-        const ratio = Math.min(window.devicePixelRatio || 1, 2);
-        chart.width = Math.round(bounds.width * ratio);
-        chart.height = Math.round(bounds.height * ratio);
-        chartContext.setTransform(ratio, 0, 0, ratio, 0, 0);
-        chartContext.clearRect(0, 0, bounds.width, bounds.height);
-
-        const plot = {
-          left: 36,
-          top: 18,
-          right: bounds.width - 18,
-          bottom: bounds.height - 30,
-        };
-        const plotWidth = plot.right - plot.left;
-        const plotHeight = plot.bottom - plot.top;
-        const xFor = (index) => plot.left + (index / 6) * plotWidth;
-        const yFor = (value) => plot.bottom - (value / 100) * plotHeight;
-
-        chartContext.font = "8px monospace";
-        chartContext.fillStyle = "rgba(21, 32, 29, 0.45)";
-        chartContext.strokeStyle = "rgba(21, 32, 29, 0.13)";
-        chartContext.lineWidth = 1;
-
-        [0, 25, 50, 75, 100].forEach((value) => {
-          const y = yFor(value);
-          chartContext.beginPath();
-          chartContext.moveTo(plot.left, y);
-          chartContext.lineTo(plot.right, y);
-          chartContext.stroke();
-          chartContext.fillText(String(value), 7, y + 3);
-        });
-
-        for (let index = 0; index < 7; index += 1) {
-          const x = xFor(index);
-          chartContext.beginPath();
-          chartContext.moveTo(x, plot.top);
-          chartContext.lineTo(x, plot.bottom);
-          chartContext.stroke();
-          chartContext.fillText(`W${index}`, x - 6, bounds.height - 8);
-        }
-
-        const drawSeries = (values, color, dashed) => {
-          chartContext.save();
-          chartContext.strokeStyle = color;
-          chartContext.lineWidth = 2.25;
-          chartContext.setLineDash(dashed ? [6, 5] : []);
-          chartContext.beginPath();
-          values.forEach((value, index) => {
-            const x = xFor(index);
-            const y = yFor(value);
-            if (index === 0) chartContext.moveTo(x, y);
-            else chartContext.lineTo(x, y);
-          });
-          chartContext.stroke();
-          chartContext.restore();
-
-          values.forEach((value, index) => {
-            chartContext.beginPath();
-            chartContext.arc(xFor(index), yFor(value), index === chartIndex ? 5 : 2.75, 0, Math.PI * 2);
-            chartContext.fillStyle = index === chartIndex ? "#f7f8f5" : color;
-            chartContext.fill();
-            chartContext.strokeStyle = color;
-            chartContext.lineWidth = 2;
-            chartContext.stroke();
-          });
-        };
-
-        const cursorX = xFor(chartIndex);
-        chartContext.save();
-        chartContext.strokeStyle = "rgba(21, 32, 29, 0.48)";
-        chartContext.setLineDash([2, 4]);
+      [0, 25, 50, 75, 100].forEach((value) => {
+        const y = yFor(value);
         chartContext.beginPath();
-        chartContext.moveTo(cursorX, plot.top);
-        chartContext.lineTo(cursorX, plot.bottom);
+        chartContext.moveTo(plot.left, y);
+        chartContext.lineTo(plot.right, y);
+        chartContext.stroke();
+        chartContext.fillText(String(value), 7, y + 3);
+      });
+
+      for (let index = 0; index < 7; index += 1) {
+        const x = xFor(index);
+        chartContext.beginPath();
+        chartContext.moveTo(x, plot.top);
+        chartContext.lineTo(x, plot.bottom);
+        chartContext.stroke();
+        chartContext.fillText(`W${index}`, x - 6, bounds.height - 8);
+      }
+
+      const drawSeries = (values, color, dashed) => {
+        chartContext.save();
+        chartContext.strokeStyle = color;
+        chartContext.lineWidth = 2.25;
+        chartContext.setLineDash(dashed ? [6, 5] : []);
+        chartContext.beginPath();
+        values.forEach((value, index) => {
+          const x = xFor(index);
+          const y = yFor(value);
+          if (index === 0) chartContext.moveTo(x, y);
+          else chartContext.lineTo(x, y);
+        });
         chartContext.stroke();
         chartContext.restore();
 
-        drawSeries(chartSeries.value, "#087466", false);
-        drawSeries(chartSeries.uncertainty, "#ff6b57", true);
-
-        document.getElementById("chart-week").textContent = `WEEK 0${chartIndex}`;
-        document.getElementById("chart-value").textContent = chartSeries.value[chartIndex];
-        document.getElementById("chart-uncertainty").textContent = chartSeries.uncertainty[chartIndex];
+        values.forEach((value, index) => {
+          chartContext.beginPath();
+          chartContext.arc(xFor(index), yFor(value), index === chartIndex ? 5 : 2.75, 0, Math.PI * 2);
+          chartContext.fillStyle = index === chartIndex ? "#f7f8f5" : color;
+          chartContext.fill();
+          chartContext.strokeStyle = color;
+          chartContext.lineWidth = 2;
+          chartContext.stroke();
+        });
       };
 
-      chart.addEventListener("pointermove", (event) => {
-        const bounds = chart.getBoundingClientRect();
-        const relativeX = Math.max(0, Math.min(bounds.width, event.clientX - bounds.left));
-        chartIndex = Math.max(0, Math.min(6, Math.round(((relativeX - 36) / Math.max(1, bounds.width - 54)) * 6)));
-        renderChart();
-      });
+      const cursorX = xFor(chartIndex);
+      chartContext.save();
+      chartContext.strokeStyle = "rgba(21, 32, 29, 0.48)";
+      chartContext.setLineDash([2, 4]);
+      chartContext.beginPath();
+      chartContext.moveTo(cursorX, plot.top);
+      chartContext.lineTo(cursorX, plot.bottom);
+      chartContext.stroke();
+      chartContext.restore();
 
-      chart.addEventListener("pointerleave", () => {
-        chartIndex = 3;
-        renderChart();
-      });
+      drawSeries(chartSeries.value, "#087466", false);
+      drawSeries(chartSeries.uncertainty, "#ff6b57", true);
 
-      new ResizeObserver(renderChart).observe(chart);
+      document.getElementById("chart-week").textContent = `WEEK 0${chartIndex}`;
+      document.getElementById("chart-value").textContent = chartSeries.value[chartIndex];
+      document.getElementById("chart-uncertainty").textContent = chartSeries.uncertainty[chartIndex];
+    };
+
+    chart.addEventListener("pointermove", (event) => {
+      const bounds = chart.getBoundingClientRect();
+      const relativeX = Math.max(0, Math.min(bounds.width, event.clientX - bounds.left));
+      chartIndex = Math.max(0, Math.min(6, Math.round(((relativeX - 36) / Math.max(1, bounds.width - 54)) * 6)));
       renderChart();
+    });
 
-      const menuButton = document.getElementById("menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
+    chart.addEventListener("pointerleave", () => {
+      chartIndex = 3;
+      renderChart();
+    });
 
-      menuButton.addEventListener("click", () => {
-        const hidden = mobileMenu.classList.toggle("hidden");
-        mobileMenu.classList.toggle("grid", !hidden);
-        menuButton.setAttribute("aria-expanded", String(!hidden));
+    new ResizeObserver(renderChart).observe(chart);
+    renderChart();
+
+    const menuButton = document.getElementById("menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuButton.addEventListener("click", () => {
+      const hidden = mobileMenu.classList.toggle("hidden");
+      mobileMenu.classList.toggle("grid", !hidden);
+      menuButton.setAttribute("aria-expanded", String(!hidden));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("grid");
+        menuButton.setAttribute("aria-expanded", "false");
       });
+    });
 
-      mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          mobileMenu.classList.remove("grid");
-          menuButton.setAttribute("aria-expanded", "false");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!current) return;
+        document.querySelectorAll("[data-rail]").forEach((link) => {
+          link.classList.toggle("active", link.dataset.rail === current.target.id);
         });
-      });
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0.05, 0.2, 0.5] },
+    );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const current = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (!current) return;
-          document.querySelectorAll("[data-rail]").forEach((link) => {
-            link.classList.toggle("active", link.dataset.rail === current.target.id);
-          });
-        },
-        { rootMargin: "-20% 0px -55% 0px", threshold: [0.05, 0.2, 0.5] },
-      );
+    document.querySelectorAll("main section[id]").forEach((section) => observer.observe(section));
 
-      document.querySelectorAll("main section[id]").forEach((section) => observer.observe(section));
+    document.getElementById("contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const status = document.getElementById("form-status");
+      status.textContent = "MESSAGE CAPTURED // Prototype mode: connect this form to your email or CRM.";
+      status.classList.remove("hidden");
+      showToast("MESSAGE CAPTURED");
+    });
+  </script>
+</body>
 
-      document.getElementById("contact-form").addEventListener("submit", (event) => {
-        event.preventDefault();
-        const status = document.getElementById("form-status");
-        status.textContent = "MESSAGE CAPTURED // Prototype mode: connect this form to your email or CRM.";
-        status.classList.remove("hidden");
-        showToast("MESSAGE CAPTURED");
-      });
-    </script>
-  </body>
 </html>
