@@ -55,7 +55,10 @@
     }
 
     body {
+      height: 100vh;
+      height: 100dvh;
       margin: 0;
+      overflow: hidden;
       background: var(--chassis);
       color: var(--ink);
     }
@@ -66,11 +69,28 @@
     }
 
     .site-frame {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
       background: #edf0ed;
       border: 1px solid rgba(21, 32, 29, 0.34);
       box-shadow:
         0 28px 70px rgba(25, 36, 33, 0.2),
         0 0 0 6px rgba(21, 32, 29, 0.08);
+    }
+
+    .viewport-shell {
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    .content-scroll {
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+      scroll-behavior: smooth;
+      scroll-padding-top: 4rem;
+      scrollbar-gutter: stable;
     }
 
     .hardware-rail {
@@ -456,9 +476,9 @@
 </head>
 
 <body class="font-mono selection:bg-mint selection:text-ink">
-  <div class="mx-auto w-full max-w-[1660px] p-0 md:p-5 xl:p-8">
-    <div class="site-frame grid min-h-screen grid-cols-1 md:grid-cols-[74px_minmax(0,1fr)]">
-      <aside class="hardware-rail sticky top-0 hidden h-screen flex-col gap-3 p-3 md:flex" aria-label="Page sections">
+  <div class="viewport-shell mx-auto w-full max-w-[1660px] p-0 md:p-5 xl:p-8">
+    <div class="site-frame grid grid-cols-1 md:grid-cols-[74px_minmax(0,1fr)]">
+      <aside class="hardware-rail hidden h-full min-h-0 flex-col gap-3 p-3 md:flex" aria-label="Page sections">
         <a href="#top" class="grid aspect-square place-items-center border border-ink/45 bg-[#e7ebe8] text-[9px] font-black" aria-label="CLOUDBOX LABS home">
           CB/L
         </a>
@@ -477,7 +497,7 @@
 
       </aside>
 
-      <div class="min-w-0">
+      <div id="page-scroll" class="content-scroll min-w-0">
         <header class="sticky top-0 z-40 border-b border-ink/20 bg-[#f4f6f3]/95 backdrop-blur-sm">
           <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
             <a href="#top" class="flex items-center gap-3" aria-label="CLOUDBOX LABS home">
@@ -1007,6 +1027,7 @@
       stop.addEventListener("click", () => setTimeline(stop.dataset.timelineStep));
     });
 
+    const pageScroll = document.getElementById("page-scroll");
     const hero = document.getElementById("hero");
     const signalProgress = document.getElementById("signal-progress");
     const signalNodes = [...document.querySelectorAll("[data-signal-node]")];
@@ -1015,7 +1036,7 @@
     const updateHeroSignal = () => {
       signalFrame = null;
       const heroTop = hero.offsetTop;
-      const travelled = window.scrollY + window.innerHeight * 0.2 - heroTop;
+      const travelled = pageScroll.scrollTop + pageScroll.clientHeight * 0.2 - heroTop;
       const progress = Math.max(0, Math.min(1, travelled / (hero.offsetHeight * 0.72)));
       signalProgress.style.width = `${progress * 100}%`;
       signalNodes.forEach((node, index) => {
@@ -1024,7 +1045,7 @@
       });
     };
 
-    window.addEventListener(
+    pageScroll.addEventListener(
       "scroll",
       () => {
         if (!signalFrame) signalFrame = requestAnimationFrame(updateHeroSignal);
@@ -1172,7 +1193,7 @@
           link.classList.toggle("active", link.dataset.rail === current.target.id);
         });
       },
-      { rootMargin: "-20% 0px -55% 0px", threshold: [0.05, 0.2, 0.5] },
+      { root: pageScroll, rootMargin: "-20% 0px -55% 0px", threshold: [0.05, 0.2, 0.5] },
     );
 
     document.querySelectorAll("main section[id]").forEach((section) => observer.observe(section));
