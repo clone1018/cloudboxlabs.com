@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A responsive tactical command interface inspired by the technical displays of Gundam 00."
+      content="FIELD/01 helps startups and existing companies build and launch software products in weeks, using senior product experience and AI-native engineering."
     />
-    <title>Veda // Tactical Link</title>
+    <title>FIELD/01 — Build your product in weeks</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              ink: "#101514",
-              paper: "#eef1ec",
+              ink: "#15201d",
+              paper: "#f7f8f5",
+              chassis: "#d7ddda",
               mint: "#72e6cf",
-              cyan: "#7dd7e8",
-              warning: "#ff6d5a",
+              mintdark: "#087466",
+              signal: "#ff6b57",
             },
             fontFamily: {
               mono: [
@@ -32,6 +33,7 @@
                 "Arial Narrow",
                 "Aptos Display",
                 "Helvetica Neue",
+                "Arial",
                 "sans-serif",
               ],
             },
@@ -41,53 +43,99 @@
     </script>
     <style>
       :root {
-        color-scheme: dark;
-        --ink: #101514;
-        --paper: #eef1ec;
+        color-scheme: light;
+        --ink: #15201d;
+        --paper: #f7f8f5;
+        --chassis: #d7ddda;
         --mint: #72e6cf;
-        --cyan: #7dd7e8;
-        --warning: #ff6d5a;
+        --mint-dark: #087466;
+        --signal: #ff6b57;
       }
 
-      * {
-        scrollbar-color: #6e7a77 #111615;
-        scrollbar-width: thin;
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        background:
-          radial-gradient(circle at 50% -10%, rgba(112, 230, 207, 0.1), transparent 33rem),
-          linear-gradient(115deg, #070a09, #111715 50%, #080b0a);
-      }
-
-      .shell {
-        box-shadow:
-          0 32px 90px rgba(0, 0, 0, 0.75),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      }
-
-      .paper-panel {
-        background:
-          linear-gradient(rgba(16, 21, 20, 0.038) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(16, 21, 20, 0.038) 1px, transparent 1px),
-          var(--paper);
-        background-size: 20px 20px;
+        margin: 0;
+        background: var(--chassis);
         color: var(--ink);
+      }
+
+      * {
+        scrollbar-color: #7d8985 #d7ddda;
+        scrollbar-width: thin;
+      }
+
+      .site-frame {
+        background: #edf0ed;
+        border: 1px solid rgba(21, 32, 29, 0.34);
         box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.8),
-          inset 0 0 45px rgba(65, 90, 85, 0.08),
-          0 0 35px rgba(217, 255, 245, 0.08);
+          0 28px 70px rgba(25, 36, 33, 0.2),
+          0 0 0 6px rgba(21, 32, 29, 0.08);
       }
 
-      .dark-panel {
-        background:
-          linear-gradient(rgba(114, 230, 207, 0.025) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(114, 230, 207, 0.025) 1px, transparent 1px),
-          #111715;
-        background-size: 14px 14px;
+      .hardware-rail {
+        background: #b8c1be;
+        border-right: 1px solid rgba(21, 32, 29, 0.34);
+        box-shadow: inset -1px 0 rgba(255, 255, 255, 0.7);
       }
 
-      .panel-corners {
+      .hardware-key {
+        position: relative;
+        background: #cbd2d0;
+        border: 1px solid rgba(21, 32, 29, 0.54);
+        box-shadow:
+          inset 1px 1px rgba(255, 255, 255, 0.9),
+          inset -1px -2px rgba(40, 53, 49, 0.16),
+          0 3px 6px rgba(28, 39, 36, 0.2);
+        transition:
+          transform 140ms ease,
+          background 140ms ease,
+          color 140ms ease;
+      }
+
+      .hardware-key::after {
+        content: "";
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 38%;
+        height: 2px;
+        background: #66736f;
+      }
+
+      .hardware-key:hover,
+      .hardware-key.active {
+        color: #075f52;
+        background: #a9e4d8;
+      }
+
+      .hardware-key.active::before {
+        content: "";
+        position: absolute;
+        right: 50%;
+        bottom: 12px;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--mint-dark);
+        transform: translateX(50%);
+        animation: rail-pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes rail-pulse {
+        50% {
+          box-shadow: 0 0 0 6px rgba(8, 116, 102, 0.12);
+          opacity: 0.55;
+        }
+      }
+
+      .hardware-key:active {
+        transform: translateY(1px);
+      }
+
+      .cut-panel {
         clip-path: polygon(
           0 10px,
           10px 0,
@@ -100,970 +148,1072 @@
         );
       }
 
-      .mini-label {
+      .screen {
+        background: #fafbf8;
+        border: 1px solid rgba(21, 32, 29, 0.34);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.92),
+          0 8px 22px rgba(26, 38, 34, 0.1);
+      }
+
+      .eyebrow {
+        font-size: 0.625rem;
+        line-height: 1;
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
-      .screen-glare::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(
-          105deg,
-          transparent 20%,
-          rgba(255, 255, 255, 0.07) 48%,
-          transparent 70%
-        );
-        mix-blend-mode: screen;
+      .section-index {
+        display: grid;
+        width: 2rem;
+        height: 2rem;
+        place-items: center;
+        border: 1px solid rgba(21, 32, 29, 0.34);
+        color: var(--mint-dark);
+        font-size: 0.625rem;
       }
 
-      .radar {
-        background:
-          linear-gradient(90deg, transparent 49.8%, rgba(16, 21, 20, 0.15) 50%, transparent 50.2%),
-          linear-gradient(transparent 49.8%, rgba(16, 21, 20, 0.15) 50%, transparent 50.2%);
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--mint-dark);
+        animation: pulse 1.8s ease-in-out infinite;
       }
 
-      .radar::before,
-      .radar::after {
-        content: "";
-        position: absolute;
-        inset: 8%;
-        border: 1px solid rgba(16, 21, 20, 0.35);
-        border-radius: 50%;
-      }
-
-      .radar::after {
-        inset: 25%;
-        border-style: dashed;
-        border-color: rgba(16, 21, 20, 0.24);
-      }
-
-      .radar-arc {
-        position: absolute;
-        inset: 2%;
-        border-radius: 50%;
-        border: 10px solid transparent;
-        border-top-color: rgba(16, 21, 20, 0.82);
-        border-right-color: rgba(16, 21, 20, 0.14);
-        transform: rotate(12deg);
-      }
-
-      .radar-arc.inner {
-        inset: 15%;
-        border-width: 2px;
-        border-top-color: rgba(16, 21, 20, 0.7);
-        border-left-color: rgba(16, 21, 20, 0.22);
-        transform: rotate(-34deg);
-      }
-
-      .radar-sweep {
-        position: absolute;
-        inset: 7%;
-        border-radius: 50%;
-        background: conic-gradient(
-          from 30deg,
-          transparent 0deg,
-          transparent 310deg,
-          rgba(80, 196, 174, 0.05) 330deg,
-          rgba(80, 196, 174, 0.33) 357deg,
-          transparent 360deg
-        );
-        animation: sweep 7s linear infinite;
-        transform-origin: center;
-      }
-
-      @keyframes sweep {
-        to {
-          transform: rotate(360deg);
+      @keyframes pulse {
+        50% {
+          opacity: 0.35;
         }
       }
 
-      .target {
-        position: absolute;
-        width: 18px;
-        height: 18px;
-        border: 1px solid currentColor;
-        color: #121716;
-        transform: translate(-50%, -50%) rotate(45deg);
-        background: rgba(238, 241, 236, 0.86);
+      .cta-primary {
+        background: var(--mint);
+        border: 1px solid var(--ink);
+        box-shadow: 3px 3px 0 var(--ink);
         transition:
-          transform 160ms ease,
+          box-shadow 140ms ease,
+          transform 140ms ease;
+      }
+
+      .cta-primary:hover {
+        box-shadow: 1px 1px 0 var(--ink);
+        transform: translate(2px, 2px);
+      }
+
+      .cta-secondary {
+        background: #f9faf7;
+        border: 1px solid rgba(21, 32, 29, 0.38);
+      }
+
+      .cta-secondary:hover {
+        border-color: var(--mint-dark);
+        color: var(--mint-dark);
+      }
+
+      .profile-key.active {
+        color: #075f52;
+        border-color: var(--mint-dark);
+        background: #dff7f0;
+      }
+
+      .signal-track {
+        position: relative;
+      }
+
+      .signal-track::before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: rgba(21, 32, 29, 0.25);
+      }
+
+      .signal-progress {
+        position: absolute;
+        z-index: 0;
+        top: 17px;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: var(--mint-dark);
+      }
+
+      .signal-node {
+        position: relative;
+        z-index: 1;
+        background: #edf0ed;
+      }
+
+      .signal-node > span:first-child {
+        transition:
           background 160ms ease,
+          border-color 160ms ease,
           box-shadow 160ms ease;
       }
 
-      .target::before,
-      .target::after {
-        content: "";
-        position: absolute;
-        background: currentColor;
-        opacity: 0.55;
-      }
-
-      .target::before {
-        width: 28px;
-        height: 1px;
-        left: -6px;
-        top: 8px;
-      }
-
-      .target::after {
-        width: 1px;
-        height: 28px;
-        left: 8px;
-        top: -6px;
-      }
-
-      .target:hover,
-      .target:focus-visible,
-      .target.active {
-        outline: none;
+      .signal-node.reached > span:first-child {
+        border-color: var(--mint-dark);
         background: var(--mint);
-        box-shadow: 0 0 0 5px rgba(114, 230, 207, 0.2);
-        transform: translate(-50%, -50%) rotate(45deg) scale(1.15);
+        box-shadow: 0 0 0 4px rgba(114, 230, 207, 0.16);
       }
 
-      .target.hostile:hover,
-      .target.hostile:focus-visible,
-      .target.hostile.active {
-        background: var(--warning);
-        box-shadow: 0 0 0 5px rgba(255, 109, 90, 0.18);
-      }
-
-      .target-tag {
-        position: absolute;
-        transform: translate(14px, -17px) rotate(-45deg);
-        white-space: nowrap;
-        font: 600 8px/1 monospace;
-        letter-spacing: 0.08em;
-      }
-
-      .hardware-key {
+      .flow-row {
         position: relative;
-        overflow: hidden;
-        background: linear-gradient(155deg, #2a3230 0%, #151b1a 65%);
-        box-shadow:
-          inset 1px 1px rgba(255, 255, 255, 0.12),
-          inset -1px -2px rgba(0, 0, 0, 0.7),
-          0 3px 6px rgba(0, 0, 0, 0.45);
+        width: 100%;
+        border-top: 1px solid rgba(21, 32, 29, 0.25);
+        transition:
+          color 150ms ease,
+          background 150ms ease;
       }
 
-      .hardware-key::after {
+      .flow-row:last-child {
+        border-bottom: 1px solid rgba(21, 32, 29, 0.25);
+      }
+
+      .flow-row::after {
+        content: "→";
+        position: absolute;
+        top: 50%;
+        right: 1.25rem;
+        transform: translateY(-50%);
+        font-size: 1.25rem;
+        color: rgba(21, 32, 29, 0.35);
+      }
+
+      .flow-row:hover,
+      .flow-row.active {
+        color: #075f52;
+        background: rgba(114, 230, 207, 0.15);
+      }
+
+      .flow-row.active::after {
+        color: var(--mint-dark);
+      }
+
+      .handoff-line {
+        position: relative;
+      }
+
+      .handoff-line::after {
         content: "";
         position: absolute;
-        width: 44%;
-        height: 2px;
-        right: 12%;
-        top: 13px;
-        background: #71807d;
-        box-shadow: 0 1px #000;
+        top: 1.1rem;
+        right: -50%;
+        width: 100%;
+        height: 1px;
+        background: rgba(21, 32, 29, 0.28);
       }
 
-      .hardware-key:active,
-      .hardware-key.active {
-        transform: translateY(1px);
-        background: linear-gradient(155deg, #3b4c48 0%, #1a2321 65%);
-        color: var(--mint);
+      .handoff-line:last-child::after {
+        display: none;
       }
 
-      .seg-bar {
-        background-image: repeating-linear-gradient(
-          90deg,
-          currentColor 0 10px,
-          transparent 10px 13px
-        );
+      .timeline-stop {
+        cursor: pointer;
       }
 
-      .pulse-dot {
-        animation: pulse-dot 1.8s ease-in-out infinite;
+      .timeline-stop .timeline-node {
+        transition:
+          background 150ms ease,
+          border-color 150ms ease,
+          box-shadow 150ms ease,
+          transform 150ms ease;
       }
 
-      @keyframes pulse-dot {
-        50% {
-          opacity: 0.35;
-          box-shadow: 0 0 0 5px rgba(114, 230, 207, 0.08);
+      .timeline-stop.complete .timeline-node {
+        border-color: var(--mint-dark);
+        background: #b9eadf;
+      }
+
+      .timeline-stop.active .timeline-node {
+        border-color: var(--ink);
+        background: var(--mint);
+        box-shadow: 0 0 0 5px rgba(114, 230, 207, 0.18);
+        transform: scale(1.08);
+      }
+
+      .timeline-range {
+        width: 100%;
+        height: 18px;
+        appearance: none;
+        background: transparent;
+        cursor: ew-resize;
+      }
+
+      .timeline-range::-webkit-slider-runnable-track {
+        height: 3px;
+        border: 1px solid rgba(21, 32, 29, 0.3);
+        background: #c8d0cd;
+      }
+
+      .timeline-range::-webkit-slider-thumb {
+        width: 17px;
+        height: 17px;
+        margin-top: -8px;
+        appearance: none;
+        border: 1px solid var(--ink);
+        border-radius: 0;
+        background: var(--mint);
+        box-shadow: 2px 2px 0 var(--ink);
+      }
+
+      .timeline-range::-moz-range-track {
+        height: 3px;
+        border: 1px solid rgba(21, 32, 29, 0.3);
+        background: #c8d0cd;
+      }
+
+      .timeline-range::-moz-range-thumb {
+        width: 17px;
+        height: 17px;
+        border: 1px solid var(--ink);
+        border-radius: 0;
+        background: var(--mint);
+        box-shadow: 2px 2px 0 var(--ink);
+      }
+
+      .boot-item {
+        animation: boot-in 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        animation-delay: var(--boot-delay, 0ms);
+      }
+
+      @keyframes boot-in {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      .data-row {
-        transition:
-          background 140ms ease,
-          color 140ms ease;
-      }
-
-      .data-row:hover,
-      .data-row.selected {
-        background: #18211f;
-        color: var(--mint);
-      }
-
-      .tab.active {
-        color: #0e1513;
-        background: var(--mint);
-        border-color: var(--mint);
-      }
-
-      .scan-active .radar-sweep {
-        animation-duration: 1.6s;
-      }
-
-      .scan-active .paper-panel {
-        box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.8),
-          inset 0 0 45px rgba(65, 90, 85, 0.08),
-          0 0 45px rgba(114, 230, 207, 0.16);
-      }
-
-      /* Light instrument-room treatment inspired by the reference screens. */
-      body.light-ui {
-        color-scheme: light;
-        color: #24302d;
-        background: #d7ddda;
-      }
-
-      body.light-ui::before {
-        display: none;
-      }
-
-      body.light-ui .shell {
-        background: #e7ebe8 !important;
-        border-color: rgba(18, 28, 25, 0.28) !important;
-        box-shadow:
-          0 24px 60px rgba(27, 39, 35, 0.22),
-          0 0 0 6px rgba(28, 37, 35, 0.1);
-      }
-
-      body.light-ui header,
-      body.light-ui footer {
-        background: #f4f6f3 !important;
-        color: #1a2421;
-      }
-
-      body.light-ui main > aside {
-        background: #b9c2bf !important;
-        border-color: rgba(18, 28, 25, 0.3) !important;
-        box-shadow: inset -1px 0 rgba(255, 255, 255, 0.72);
-      }
-
-      body.light-ui .dark-panel {
-        color: #1e2926;
-        background: #edf1ee !important;
-        box-shadow: inset 1px 0 rgba(255, 255, 255, 0.8);
-      }
-
-      body.light-ui .paper-panel {
+      .chart-shell {
         background: #fafbf8;
-        box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.95),
-          0 6px 18px rgba(34, 47, 43, 0.12),
-          0 0 0 4px rgba(45, 56, 53, 0.07);
+        border: 1px solid rgba(21, 32, 29, 0.26);
       }
 
-      body.light-ui .screen-glare::after {
-        display: none;
+      .field {
+        width: 100%;
+        border: 1px solid rgba(21, 32, 29, 0.34);
+        border-radius: 0;
+        background: #fbfcfa;
+        color: var(--ink);
+        outline: none;
       }
 
-      body.light-ui .hardware-key {
-        color: #303a38;
-        background: #c4ccca;
-        border-color: rgba(22, 30, 28, 0.6) !important;
-        box-shadow:
-          inset 1px 1px rgba(255, 255, 255, 0.9),
-          inset -1px -2px rgba(38, 48, 45, 0.18),
-          0 3px 6px rgba(23, 32, 29, 0.26);
+      .field:focus {
+        border-color: var(--mint-dark);
+        box-shadow: inset 3px 0 var(--mint);
       }
 
-      body.light-ui .hardware-key::after {
-        background: #53615d;
-        box-shadow: 0 1px rgba(255, 255, 255, 0.7);
+      .vertical-type {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
       }
 
-      body.light-ui .hardware-key:active,
-      body.light-ui .hardware-key.active {
-        color: #075f52;
-        background: #a9e4d8;
-      }
-
-      body.light-ui .text-white {
-        color: #17211e !important;
-      }
-
-      body.light-ui [class*="text-white/"] {
-        color: #64706d !important;
-      }
-
-      body.light-ui .text-mint {
-        color: #087466 !important;
-      }
-
-      body.light-ui .text-cyan {
-        color: #27748a !important;
-      }
-
-      body.light-ui .text-warning {
-        color: #c64435 !important;
-      }
-
-      body.light-ui [class*="border-white/"] {
-        border-color: rgba(30, 43, 39, 0.17) !important;
-      }
-
-      body.light-ui [class*="bg-white/"] {
-        background-color: rgba(25, 38, 34, 0.07) !important;
-      }
-
-      body.light-ui [class*="bg-black/"] {
-        background-color: rgba(22, 32, 29, 0.12) !important;
-      }
-
-      body.light-ui .data-row:hover,
-      body.light-ui .data-row.selected {
-        color: #075f52;
-        background: rgba(77, 125, 114, 0.12);
-      }
-
-      body.light-ui .data-row:hover .text-white,
-      body.light-ui .data-row.selected .text-white {
-        color: #075f52 !important;
-      }
-
-      body.light-ui .channel {
-        background: rgba(255, 255, 255, 0.38);
-      }
-
-      body.light-ui .channel:hover {
-        background: rgba(114, 230, 207, 0.13);
-      }
-
-      body.light-ui .tab:not(.active) {
-        color: #52605c;
-        background: rgba(255, 255, 255, 0.35);
-      }
-
-      body.light-ui .tab.active {
-        color: #0e1916 !important;
-        background: #72e6cf;
-      }
-
-      body.light-ui #track-button,
-      body.light-ui #scan-button {
-        background-color: rgba(114, 230, 207, 0.13);
-      }
-
-      body.light-ui #track-button:hover,
-      body.light-ui #scan-button:hover {
-        color: #10201c !important;
-        background-color: #72e6cf;
-      }
-
-      body.light-ui table {
-        background: rgba(255, 255, 255, 0.42);
-      }
-
-      body.light-ui #toast {
-        color: #f0fff9;
-        background: rgba(17, 35, 30, 0.95);
-        border-color: rgba(114, 230, 207, 0.75);
+      @media (max-width: 767px) {
+        .flow-row::after {
+          right: 0.75rem;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .boot-item {
+          animation-delay: 0ms !important;
+        }
+
         *,
         *::before,
         *::after {
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
-          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
-  <body class="light-ui min-h-screen overflow-x-hidden font-mono text-[#24302d] selection:bg-mint selection:text-ink">
-    <div class="mx-auto flex min-h-screen w-full max-w-[1760px] items-center justify-center p-0 md:p-4 xl:p-7">
-      <main
-        id="app-shell"
-        class="shell relative grid min-h-screen w-full grid-cols-1 overflow-hidden border border-white/10 bg-[#0b0f0e] md:min-h-[860px] md:grid-cols-[68px_minmax(0,1fr)] xl:grid-cols-[86px_minmax(0,1fr)]"
-      >
-        <aside
-          class="order-2 flex min-h-[72px] flex-row gap-2 border-t border-white/10 bg-[#171d1c] p-2 md:order-none md:min-h-0 md:flex-col md:border-r md:border-t-0 md:p-3"
-          aria-label="Hardware controls"
-        >
-          <div class="hidden h-20 items-center justify-center md:flex">
-            <div class="grid h-10 w-10 place-items-center rounded-full border border-mint/60 text-[9px] font-bold text-mint">
-              VDA
-            </div>
-          </div>
-          <button class="hardware-key active h-14 min-w-16 flex-1 border border-black/70 text-[9px] md:h-auto md:min-w-0" data-side="OPS">
-            OPS
-          </button>
-          <button class="hardware-key h-14 min-w-16 flex-1 border border-black/70 text-[9px] md:h-auto md:min-w-0" data-side="LINK">
-            LINK
-          </button>
-          <button class="hardware-key h-14 min-w-16 flex-1 border border-black/70 text-[9px] md:h-auto md:min-w-0" data-side="ORBIT">
-            ORB
-          </button>
-          <button class="hardware-key h-14 min-w-16 flex-1 border border-black/70 text-[9px] md:h-auto md:min-w-0" data-side="DATA">
-            DATA
-          </button>
-          <button class="hardware-key h-14 min-w-16 flex-1 border border-black/70 text-[9px] md:h-auto md:min-w-0" data-side="SYS">
-            SYS
-          </button>
-          <div class="hidden h-24 flex-col items-center justify-end gap-2 text-[8px] text-white/30 md:flex">
-            <span class="h-1.5 w-1.5 rounded-full bg-mint pulse-dot"></span>
-            <span class="-rotate-90 whitespace-nowrap">L1:SECURE</span>
+
+  <body class="font-mono selection:bg-mint selection:text-ink">
+    <div class="mx-auto w-full max-w-[1660px] p-0 md:p-5 xl:p-8">
+      <div class="site-frame grid min-h-screen grid-cols-1 md:grid-cols-[74px_minmax(0,1fr)]">
+        <aside class="hardware-rail sticky top-0 hidden h-screen flex-col gap-3 p-3 md:flex" aria-label="Page sections">
+          <a
+            href="#top"
+            class="grid aspect-square place-items-center border border-ink/45 bg-[#e7ebe8] text-[9px] font-black"
+            aria-label="FIELD/01 home"
+          >
+            F/01
+          </a>
+          <a href="#fit" class="hardware-key active flex flex-1 items-center justify-center text-[8px]" data-rail="fit">
+            <span class="-rotate-90 whitespace-nowrap">FIT</span>
+          </a>
+          <a href="#delivery" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="delivery">
+            <span class="-rotate-90 whitespace-nowrap">DELIVERY</span>
+          </a>
+          <a href="#leverage" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="leverage">
+            <span class="-rotate-90 whitespace-nowrap">LEVERAGE</span>
+          </a>
+          <a href="#contact" class="hardware-key flex flex-1 items-center justify-center text-[8px]" data-rail="contact">
+            <span class="-rotate-90 whitespace-nowrap">START</span>
+          </a>
+          <div class="flex h-20 flex-col items-center justify-end gap-2 text-[7px] text-ink/50">
+            <span class="status-dot"></span>
+            <span class="-rotate-90 whitespace-nowrap">AVAILABLE</span>
           </div>
         </aside>
 
-        <div class="flex min-w-0 flex-col">
-          <header class="border-b border-white/10 bg-[#0e1312] px-4 py-3 lg:px-6">
-            <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-              <div class="flex items-center gap-4">
+        <div class="min-w-0">
+          <header class="sticky top-0 z-40 border-b border-ink/20 bg-[#f4f6f3]/95 backdrop-blur-sm">
+            <div class="flex min-h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10">
+              <a href="#top" class="flex items-center gap-3" aria-label="FIELD/01 home">
+                <span class="grid h-9 w-9 place-items-center border border-ink/50 bg-mint text-[9px] font-black md:hidden">F/01</span>
+                <span>
+                  <span class="block font-display text-base font-black tracking-[0.09em]">FIELD/01</span>
+                  <span class="hidden text-[7px] tracking-[0.13em] text-ink/50 sm:block">PRODUCT ENGINEERING / FAST</span>
+                </span>
+              </a>
+
+              <div class="hidden items-center gap-8 lg:flex">
+                <span class="text-[8px] text-ink/45">NYC / DISTRIBUTED</span>
+                <nav class="flex items-center gap-7 text-[9px] tracking-[0.1em]" aria-label="Primary navigation">
+                  <a class="hover:text-mintdark" href="#fit">WHAT WE BUILD</a>
+                  <a class="hover:text-mintdark" href="#delivery">HOW WE SHIP</a>
+                  <a class="hover:text-mintdark" href="#leverage">WHY IT WORKS</a>
+                </nav>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="hidden items-center gap-2 text-[8px] text-ink/55 sm:flex">
+                  <span class="status-dot"></span>
+                  NEW PROJECTS: OPEN
+                </div>
+                <a href="#contact" class="cta-primary px-4 py-2.5 text-[9px] font-bold tracking-[0.1em]">START →</a>
                 <button
                   id="menu-button"
-                  class="grid h-9 w-9 place-items-center border border-white/20 text-sm text-mint md:hidden"
-                  aria-label="Toggle navigation"
+                  class="grid h-9 w-9 place-items-center border border-ink/30 text-lg lg:hidden"
+                  aria-label="Toggle menu"
                   aria-expanded="false"
                 >
                   ≡
                 </button>
-                <div>
-                  <div class="mini-label text-[9px] text-white/40">Veda Terminal / Tactical Layer</div>
-                  <div class="mt-1 flex items-baseline gap-2 font-display">
-                    <h1 class="text-lg font-black tracking-[0.06em] text-white sm:text-xl">
-                      CELESTIAL OPERATIONS
-                    </h1>
-                    <span class="hidden text-[9px] text-mint sm:inline">REV. 03.72</span>
-                  </div>
-                </div>
-              </div>
-
-              <nav id="main-nav" class="hidden items-center gap-1 md:flex" aria-label="Primary">
-                <button class="tab active border border-white/15 px-4 py-2 text-[9px] tracking-[0.15em]" data-view="TACTICAL">
-                  TACTICAL
-                </button>
-                <button class="tab border border-white/15 px-4 py-2 text-[9px] tracking-[0.15em]" data-view="NETWORK">
-                  NETWORK
-                </button>
-                <button class="tab border border-white/15 px-4 py-2 text-[9px] tracking-[0.15em]" data-view="ARCHIVE">
-                  ARCHIVE
-                </button>
-              </nav>
-
-              <div class="flex items-center gap-3 text-[9px]">
-                <div class="hidden text-right sm:block">
-                  <div class="text-white/35">GN SYNC QUALITY</div>
-                  <div id="clock" class="mt-1 text-white">23:41:08 / LAGRANGE 3</div>
-                </div>
-                <div class="grid h-10 w-10 place-items-center rounded-full border border-mint/30">
-                  <span class="h-2 w-2 rounded-full bg-mint pulse-dot"></span>
-                </div>
               </div>
             </div>
-
-            <nav id="mobile-nav" class="mt-3 hidden grid-cols-3 gap-1 md:hidden" aria-label="Mobile primary">
-              <button class="tab active border border-white/15 px-2 py-2 text-[9px]" data-view="TACTICAL">TACTICAL</button>
-              <button class="tab border border-white/15 px-2 py-2 text-[9px]" data-view="NETWORK">NETWORK</button>
-              <button class="tab border border-white/15 px-2 py-2 text-[9px]" data-view="ARCHIVE">ARCHIVE</button>
+            <nav id="mobile-menu" class="hidden grid-cols-3 border-t border-ink/15 bg-[#f4f6f3] p-3 lg:hidden">
+              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#fit">WHAT</a>
+              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#delivery">HOW</a>
+              <a class="border border-ink/15 p-3 text-center text-[8px]" href="#leverage">WHY</a>
             </nav>
           </header>
 
-          <section class="grid min-h-0 flex-1 grid-cols-1 xl:grid-cols-[minmax(0,1.6fr)_minmax(360px,0.82fr)]">
-            <div class="min-w-0 border-white/10 xl:border-r">
-              <div class="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[minmax(0,1fr)_240px]">
-                <section class="min-w-0 p-3 sm:p-5 lg:p-6" aria-labelledby="orbital-map-title">
-                  <div class="mb-3 flex flex-wrap items-end justify-between gap-3">
+          <main id="top">
+            <section id="hero" class="relative overflow-hidden border-b border-ink/20 px-4 py-14 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+                <aside class="col-span-2 hidden border-r border-ink/20 pr-5 xl:block">
+                  <div class="eyebrow text-mintdark">Mission brief</div>
+                  <div class="mt-8 space-y-7 text-[8px] leading-4 text-ink/50">
                     <div>
-                      <div class="mini-label text-[9px] text-mint">Active theatre // Earth orbit</div>
-                      <h2 id="orbital-map-title" class="mt-1 font-display text-2xl font-black tracking-tight text-white">
-                        ORBITAL CONTACT MAP
-                      </h2>
+                      <span class="block text-ink/30">OBJECTIVE</span>
+                      <strong class="mt-1 block text-ink">SHIP VALUE</strong>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <span id="scan-indicator" class="text-[9px] text-white/35">PASSIVE SCAN</span>
-                      <button
-                        id="scan-button"
-                        class="border border-mint/60 bg-mint/5 px-3 py-2 text-[9px] font-bold tracking-[0.12em] text-mint hover:bg-mint hover:text-ink"
-                      >
-                        INITIATE SWEEP
-                      </button>
+                    <div>
+                      <span class="block text-ink/30">TIME UNIT</span>
+                      <strong class="mt-1 block text-ink">WEEKS</strong>
                     </div>
-                  </div>
-
-                  <div class="screen-glare paper-panel panel-corners relative aspect-[1.16/1] min-h-[390px] w-full overflow-hidden sm:aspect-[1.5/1] lg:min-h-[520px]">
-                    <div class="absolute inset-x-0 top-0 flex items-center justify-between border-b border-ink/30 px-4 py-2 text-[8px] font-bold">
-                      <span>DEP 386.4 // SOL III</span>
-                      <span id="map-status">CNTL 1800.400</span>
+                    <div>
+                      <span class="block text-ink/30">TEAM SHAPE</span>
+                      <strong class="mt-1 block text-ink">SMALL / SENIOR</strong>
                     </div>
-                    <div class="absolute bottom-0 left-0 top-7 w-9 border-r border-ink/20 sm:w-12">
-                      <div class="grid h-full grid-rows-6 text-[7px]">
-                        <div class="grid place-items-center border-b border-ink/15">MFD</div>
-                        <div class="grid place-items-center border-b border-ink/15">TLM</div>
-                        <div class="grid place-items-center border-b border-ink/15">FOV</div>
-                        <div class="grid place-items-center border-b border-ink/15">TRK</div>
-                        <div class="grid place-items-center border-b border-ink/15">LRS</div>
-                        <div class="grid place-items-center">SYS</div>
-                      </div>
-                    </div>
-                    <div class="absolute bottom-0 right-0 top-7 w-9 border-l border-ink/20 sm:w-12">
-                      <div class="grid h-full grid-rows-6 text-[7px]">
-                        <div class="grid place-items-center border-b border-ink/15">IFF</div>
-                        <div class="grid place-items-center border-b border-ink/15">WPN</div>
-                        <div class="grid place-items-center border-b border-ink/15">TGT</div>
-                        <div class="grid place-items-center border-b border-ink/15">COM</div>
-                        <div class="grid place-items-center border-b border-ink/15">HDR</div>
-                        <div class="grid place-items-center">AUX</div>
-                      </div>
-                    </div>
-
-                    <div class="radar absolute inset-x-11 bottom-9 top-9 overflow-hidden rounded-full sm:inset-x-14">
-                      <div class="radar-sweep"></div>
-                      <div class="radar-arc"></div>
-                      <div class="radar-arc inner"></div>
-                      <div class="absolute inset-[34%] rounded-full border border-ink/70"></div>
-                      <div class="absolute left-1/2 top-0 h-full w-px origin-center rotate-[27deg] bg-ink/10"></div>
-                      <div class="absolute left-1/2 top-0 h-full w-px origin-center -rotate-[54deg] bg-ink/10"></div>
-
-                      <button
-                        class="target active"
-                        style="left: 50%; top: 52%"
-                        data-id="CB-001"
-                        data-name="GN-001 EXIA"
-                        data-type="ALLIED"
-                        data-range="0.42"
-                        data-vector="+018 / -004"
-                        aria-label="Select GN-001 Exia"
-                      >
-                        <span class="target-tag">EXIA / 001</span>
-                      </button>
-                      <button
-                        class="target"
-                        style="left: 36%; top: 34%"
-                        data-id="CB-002"
-                        data-name="GN-002 DYNAMES"
-                        data-type="ALLIED"
-                        data-range="1.86"
-                        data-vector="-044 / +012"
-                        aria-label="Select GN-002 Dynames"
-                      >
-                        <span class="target-tag">DYN / 002</span>
-                      </button>
-                      <button
-                        class="target"
-                        style="left: 64%; top: 30%"
-                        data-id="CB-003"
-                        data-name="GN-003 KYRIOS"
-                        data-type="ALLIED"
-                        data-range="2.14"
-                        data-vector="+071 / +029"
-                        aria-label="Select GN-003 Kyrios"
-                      >
-                        <span class="target-tag">KYR / 003</span>
-                      </button>
-                      <button
-                        class="target hostile"
-                        style="left: 72%; top: 66%"
-                        data-id="UN-887"
-                        data-name="UNKNOWN MOBILE SUIT"
-                        data-type="HOSTILE"
-                        data-range="3.78"
-                        data-vector="+108 / -067"
-                        aria-label="Select unknown hostile"
-                      >
-                        <span class="target-tag">UNK / 887</span>
-                      </button>
-                    </div>
-
-                    <div class="absolute bottom-2 left-14 right-14 flex items-center justify-between text-[7px] sm:text-[8px]">
-                      <span>RANGE 000.0—640.0 KM</span>
-                      <span>LOCK QLTY <strong>99.7</strong></span>
-                      <span class="hidden sm:inline">AXIS ECLIPTIC +03.7</span>
+                    <div>
+                      <span class="block text-ink/30">OWNERSHIP</span>
+                      <strong class="mt-1 block text-ink">YOURS</strong>
                     </div>
                   </div>
-                </section>
+                  <div class="mt-14 h-24 w-px bg-ink/20"></div>
+                  <div class="vertical-type mt-4 text-[7px] tracking-[0.2em] text-ink/35">FIELD NOTE / 0001</div>
+                </aside>
 
-                <aside class="dark-panel grid grid-cols-2 border-t border-white/10 lg:grid-cols-1 lg:border-l lg:border-t-0">
-                  <div class="border-b border-r border-white/10 p-4 lg:border-r-0">
-                    <div class="mini-label text-[8px] text-white/35">Selected contact</div>
-                    <div id="selected-id" class="mt-4 text-3xl font-black text-mint">CB-001</div>
-                    <div id="selected-name" class="mt-1 text-[10px] text-white">GN-001 EXIA</div>
-                    <div class="mt-5 grid grid-cols-2 gap-3 text-[8px]">
-                      <div>
-                        <div class="text-white/30">IFF STATE</div>
-                        <div id="selected-type" class="mt-1 text-mint">ALLIED</div>
-                      </div>
-                      <div>
-                        <div class="text-white/30">RANGE</div>
-                        <div id="selected-range" class="mt-1">0.42 KM</div>
-                      </div>
-                    </div>
+                <div class="col-span-12 xl:col-span-7">
+                  <div class="flex items-center gap-3 xl:hidden">
+                    <span class="section-index">00</span>
+                    <span class="eyebrow text-mintdark">Senior product team / AI-native delivery</span>
                   </div>
+                  <h1 class="mt-7 font-display font-black leading-[0.77] tracking-[-0.07em] xl:mt-0">
+                    <span class="boot-item block text-[clamp(5rem,11vw,11rem)]" style="--boot-delay: 80ms">BUILD</span>
+                    <span class="boot-item ml-[8%] block text-[clamp(3.6rem,7.8vw,8rem)]" style="--boot-delay: 180ms">YOUR PRODUCT</span>
+                    <span class="boot-item mr-[2%] mt-3 block text-right text-[clamp(4rem,9vw,9rem)] text-mintdark" style="--boot-delay: 300ms">IN WEEKS.</span>
+                  </h1>
 
-                  <div class="border-b border-white/10 p-4">
-                    <div class="mini-label text-[8px] text-white/35">Relative vector</div>
-                    <div id="selected-vector" class="mt-3 text-lg text-white">+018 / -004</div>
-                    <div class="mt-4 h-1.5 w-full bg-black/50">
-                      <div class="seg-bar h-full w-[84%] text-mint"></div>
-                    </div>
-                  </div>
-
-                  <div class="border-r border-white/10 p-4 lg:border-b lg:border-r-0">
-                    <div class="mini-label text-[8px] text-white/35">Particle density</div>
-                    <div class="mt-3 flex items-end gap-1">
-                      <span class="text-3xl font-black text-white">7.82</span>
-                      <span class="mb-1 text-[8px] text-white/40">e⁹ / m³</span>
-                    </div>
-                    <div class="mt-4 flex h-10 items-end gap-1">
-                      <span class="h-[30%] flex-1 bg-mint/25"></span>
-                      <span class="h-[45%] flex-1 bg-mint/30"></span>
-                      <span class="h-[65%] flex-1 bg-mint/45"></span>
-                      <span class="h-full flex-1 bg-mint"></span>
-                      <span class="h-[70%] flex-1 bg-mint/50"></span>
-                      <span class="h-[48%] flex-1 bg-mint/30"></span>
-                    </div>
-                  </div>
-
-                  <div class="flex flex-col justify-end p-4">
-                    <button
-                      id="track-button"
-                      class="w-full border border-white/20 px-3 py-3 text-[9px] tracking-[0.12em] hover:border-mint hover:text-mint"
-                    >
-                      MAINTAIN TRACK
-                    </button>
-                    <p id="track-copy" class="mt-3 text-[8px] leading-relaxed text-white/35">
-                      Quantum link stable. Tactical prediction available.
+                  <div class="boot-item ml-auto mt-10 max-w-2xl border-l-4 border-mint pl-5" style="--boot-delay: 430ms">
+                    <p class="font-display text-xl font-semibold leading-snug sm:text-2xl">
+                      From idea to production software—without spending months assembling a team.
+                    </p>
+                    <p class="mt-4 max-w-xl text-[10px] leading-5 text-ink/60">
+                      We bring senior product, design, and engineering people who can define the right product, build it, and put it in
+                      customers’ hands.
                     </p>
                   </div>
+
+                  <div class="boot-item ml-auto mt-8 flex max-w-2xl flex-wrap gap-3" style="--boot-delay: 520ms">
+                    <a href="#contact" class="cta-primary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">
+                      TELL US WHAT YOU’RE BUILDING →
+                    </a>
+                    <a href="#fit" class="cta-secondary px-5 py-3.5 text-[10px] font-bold tracking-[0.1em]">CHECK THE FIT</a>
+                  </div>
+                </div>
+
+                <aside class="boot-item cut-panel screen col-span-12 self-end p-4 sm:p-5 xl:col-span-3 xl:-mb-14" style="--boot-delay: 360ms" aria-label="Project output summary">
+                  <div class="flex items-center justify-between border-b border-ink/25 pb-3">
+                    <div>
+                      <div class="eyebrow text-ink/40">Build output</div>
+                      <div class="mt-2 text-[10px] font-bold">CUSTOMER VALUE / LIVE</div>
+                    </div>
+                    <span class="status-dot"></span>
+                  </div>
+
+                  <div class="mt-5">
+                    <span class="eyebrow text-mintdark">You arrive with</span>
+                    <p class="mt-2 font-display text-2xl font-black">AN IDEA OR A STUCK PROJECT</p>
+                  </div>
+
+                  <div class="my-5 flex items-center gap-3">
+                    <span class="h-px flex-1 bg-ink/25"></span>
+                    <span class="grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[9px] font-black">F/01</span>
+                    <span class="h-px flex-1 bg-ink/25"></span>
+                  </div>
+
+                  <div>
+                    <span class="eyebrow text-mintdark">You leave with</span>
+                    <p class="mt-2 font-display text-2xl font-black">A WORKING PRODUCT YOU OWN</p>
+                  </div>
+
+                  <div class="mt-5 grid grid-cols-2 gap-px border border-ink/20 bg-ink/20 text-[8px]">
+                    <div class="bg-[#fafbf8] p-3">
+                      <span class="text-ink/40">FIRST TESTABLE</span>
+                      <strong class="mt-2 block text-base">~1 WEEK</strong>
+                    </div>
+                    <div class="bg-[#fafbf8] p-3">
+                      <span class="text-ink/40">CORE TEAM</span>
+                      <strong class="mt-2 block text-base">3–5</strong>
+                    </div>
+                  </div>
                 </aside>
+
+                <div class="col-span-12 mt-2 border-y border-ink/20 py-4 xl:col-start-3 xl:col-span-10 xl:mt-8">
+                  <div id="hero-signal" class="signal-track grid grid-cols-4 text-center">
+                    <span id="signal-progress" class="signal-progress" aria-hidden="true"></span>
+                    <div class="signal-node" data-signal-node>
+                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">01</span>
+                      <span class="mt-2 block text-[7px]">IDEA</span>
+                    </div>
+                    <div class="signal-node" data-signal-node>
+                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">02</span>
+                      <span class="mt-2 block text-[7px]">WORKING</span>
+                    </div>
+                    <div class="signal-node" data-signal-node>
+                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 text-[8px]">03</span>
+                      <span class="mt-2 block text-[7px]">PRODUCTION</span>
+                    </div>
+                    <div class="signal-node" data-signal-node>
+                      <span class="mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-mint text-[8px]">04</span>
+                      <span class="mt-2 block text-[7px]">CUSTOMER VALUE</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </section>
 
-              <section class="p-3 sm:p-5 lg:p-6" aria-labelledby="contact-log-title">
-                <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <div class="mini-label text-[8px] text-white/35">Lagrange 3 / Live register</div>
-                    <h2 id="contact-log-title" class="mt-1 font-display text-lg font-black text-white">CONTACT LOG</h2>
+            <section id="fit" class="scroll-mt-20 border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+                <div class="col-span-12 lg:col-span-4">
+                  <div class="flex items-center gap-3">
+                    <span class="section-index">01</span>
+                    <span class="eyebrow text-mintdark">Where we create value</span>
                   </div>
-                  <div class="flex items-center gap-1" aria-label="Contact filters">
-                    <button class="filter active border border-mint bg-mint px-3 py-1.5 text-[8px] text-ink" data-filter="ALL">ALL</button>
-                    <button class="filter border border-white/15 px-3 py-1.5 text-[8px]" data-filter="ALLIED">ALLIED</button>
-                    <button class="filter border border-white/15 px-3 py-1.5 text-[8px]" data-filter="HOSTILE">HOSTILE</button>
-                  </div>
+                  <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
+                    PICK THE<br />STARTING<br />POINT.
+                  </h2>
+                  <p class="mt-6 max-w-sm text-[10px] leading-5 text-ink/60">
+                    Different context, same goal: get useful software into the world sooner and learn before you overinvest.
+                  </p>
                 </div>
 
-                <div class="overflow-x-auto border border-white/10">
-                  <table class="w-full min-w-[680px] border-collapse text-left text-[9px]">
-                    <thead class="bg-white/[0.035] text-white/35">
-                      <tr>
-                        <th class="px-3 py-2 font-normal">ID / CLASS</th>
-                        <th class="px-3 py-2 font-normal">AFFILIATION</th>
-                        <th class="px-3 py-2 font-normal">VECTOR</th>
-                        <th class="px-3 py-2 font-normal">SIGNAL</th>
-                        <th class="px-3 py-2 text-right font-normal">ACTION</th>
-                      </tr>
-                    </thead>
-                    <tbody id="contact-rows">
-                      <tr class="data-row selected border-t border-white/10" data-affiliation="ALLIED" data-contact="CB-001">
-                        <td class="px-3 py-3"><strong class="text-white">CB-001</strong> / GUNDAM</td>
-                        <td class="px-3 py-3 text-mint">CELESTIAL BEING</td>
-                        <td class="px-3 py-3">+018.4 / -004.2</td>
-                        <td class="px-3 py-3"><span class="inline-block h-1.5 w-24 bg-white/10"><span class="block h-full w-[96%] bg-mint"></span></span></td>
-                        <td class="px-3 py-3 text-right"><button class="row-select hover:text-mint" data-contact="CB-001">SELECT →</button></td>
-                      </tr>
-                      <tr class="data-row border-t border-white/10" data-affiliation="ALLIED" data-contact="CB-002">
-                        <td class="px-3 py-3"><strong class="text-white">CB-002</strong> / GUNDAM</td>
-                        <td class="px-3 py-3 text-mint">CELESTIAL BEING</td>
-                        <td class="px-3 py-3">-044.7 / +012.1</td>
-                        <td class="px-3 py-3"><span class="inline-block h-1.5 w-24 bg-white/10"><span class="block h-full w-[88%] bg-mint"></span></span></td>
-                        <td class="px-3 py-3 text-right"><button class="row-select hover:text-mint" data-contact="CB-002">SELECT →</button></td>
-                      </tr>
-                      <tr class="data-row border-t border-white/10" data-affiliation="ALLIED" data-contact="CB-003">
-                        <td class="px-3 py-3"><strong class="text-white">CB-003</strong> / GUNDAM</td>
-                        <td class="px-3 py-3 text-mint">CELESTIAL BEING</td>
-                        <td class="px-3 py-3">+071.2 / +029.8</td>
-                        <td class="px-3 py-3"><span class="inline-block h-1.5 w-24 bg-white/10"><span class="block h-full w-[82%] bg-mint"></span></span></td>
-                        <td class="px-3 py-3 text-right"><button class="row-select hover:text-mint" data-contact="CB-003">SELECT →</button></td>
-                      </tr>
-                      <tr class="data-row border-t border-white/10" data-affiliation="HOSTILE" data-contact="UN-887">
-                        <td class="px-3 py-3"><strong class="text-white">UN-887</strong> / MOBILE SUIT</td>
-                        <td class="px-3 py-3 text-warning">UNKNOWN / ARMED</td>
-                        <td class="px-3 py-3">+108.9 / -067.3</td>
-                        <td class="px-3 py-3"><span class="inline-block h-1.5 w-24 bg-white/10"><span class="block h-full w-[61%] bg-warning"></span></span></td>
-                        <td class="px-3 py-3 text-right"><button class="row-select hover:text-warning" data-contact="UN-887">SELECT →</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-            </div>
-
-            <aside class="dark-panel min-w-0" aria-label="Mission telemetry">
-              <section class="border-b border-white/10 p-5 lg:p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="mini-label text-[8px] text-white/35">Forecast engine</div>
-                    <h2 class="mt-1 font-display text-xl font-black text-white">MISSION PROBABILITY</h2>
+                <div class="col-span-12 lg:col-span-8 lg:pt-12">
+                  <div role="group" aria-label="Choose a project type">
+                    <button class="flow-row active grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="startup">
+                      <span class="text-[10px] text-mintdark">A/01</span>
+                      <strong class="font-display text-2xl sm:text-3xl">NEW STARTUP</strong>
+                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Idea → product → first customers</span>
+                    </button>
+                    <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="company">
+                      <span class="text-[10px] text-mintdark">A/02</span>
+                      <strong class="font-display text-2xl sm:text-3xl">INTERNAL GREENFIELD</strong>
+                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Mandate → working system → internal owner</span>
+                    </button>
+                    <button class="flow-row grid grid-cols-[44px_1fr] gap-3 py-5 pr-12 text-left sm:grid-cols-[72px_1fr_1fr]" data-profile="existing">
+                      <span class="text-[10px] text-mintdark">A/03</span>
+                      <strong class="font-display text-2xl sm:text-3xl">EXISTING PRODUCT</strong>
+                      <span class="hidden self-center text-[9px] leading-4 text-ink/50 sm:block">Blocked work → focused push → shipped value</span>
+                    </button>
                   </div>
-                  <span class="rounded-full border border-mint/30 px-2 py-1 text-[8px] text-mint">LIVE</span>
+
+                  <div class="mt-6 grid border border-ink/25 bg-[#edf0ed] lg:grid-cols-[1fr_220px]">
+                    <div class="p-5 sm:p-7">
+                      <div id="profile-label" class="eyebrow text-mintdark">Selected / new startup</div>
+                      <h3 id="profile-title" class="mt-4 font-display text-3xl font-black sm:text-4xl">GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.</h3>
+                      <p id="profile-copy" class="mt-4 max-w-2xl text-[10px] leading-5 text-ink/60">
+                        We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.
+                      </p>
+                    </div>
+                    <div class="border-t border-ink/20 bg-[#fafbf8] p-5 lg:border-l lg:border-t-0">
+                      <div class="eyebrow text-ink/40">What you get</div>
+                      <ul id="profile-results" class="mt-4 space-y-3 text-[9px] leading-4">
+                        <li>+ Working product</li>
+                        <li>+ Production foundation</li>
+                        <li>+ First user signal</li>
+                        <li>+ Full ownership</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class="mt-6 grid grid-cols-[110px_minmax(0,1fr)] items-center gap-5">
-                  <div
-                    class="grid aspect-square place-items-center rounded-full"
-                    style="background: conic-gradient(#72e6cf 0 87%, #26302e 87% 100%)"
-                  >
-                    <div class="grid h-[78%] w-[78%] place-items-center rounded-full bg-[#111715]">
-                      <div class="text-center">
-                        <div class="text-3xl font-black text-white">87</div>
-                        <div class="text-[8px] text-mint">PERCENT</div>
+              </div>
+            </section>
+
+            <section id="delivery" class="scroll-mt-20 border-b border-ink/20 bg-[#e3e8e5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+              <div class="grid grid-cols-12 gap-x-4 gap-y-12 lg:gap-x-6">
+                <div class="col-span-12 lg:col-span-5">
+                  <div class="flex items-center gap-3">
+                    <span class="section-index">02</span>
+                    <span class="eyebrow text-mintdark">How work moves</span>
+                  </div>
+                  <h2 class="mt-7 font-display text-5xl font-black leading-[0.9] tracking-[-0.05em] sm:text-7xl">
+                    SHOW,<br />DON’T<br />STATUS.
+                  </h2>
+                  <p class="mt-6 max-w-md text-[10px] leading-5 text-ink/60">
+                    You work with the builders. Every week ends with something real to use, test, or release—not a progress presentation.
+                  </p>
+                </div>
+
+                <div class="col-span-12 lg:col-span-7 lg:pt-10">
+                  <div class="grid grid-cols-4 border-y border-ink/25 py-5 text-center" aria-label="Interactive delivery timeline">
+                    <button class="timeline-stop handoff-line active" data-timeline-step="0" aria-label="View day one">
+                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">D1</span>
+                      <strong class="mt-3 block text-[8px]">NARROW</strong>
+                    </button>
+                    <button class="timeline-stop handoff-line" data-timeline-step="1" aria-label="View week one">
+                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W1</span>
+                      <strong class="mt-3 block text-[8px]">TEST</strong>
+                    </button>
+                    <button class="timeline-stop handoff-line" data-timeline-step="2" aria-label="View build weeks">
+                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">W2+</span>
+                      <strong class="mt-3 block text-[8px]">BUILD</strong>
+                    </button>
+                    <button class="timeline-stop handoff-line" data-timeline-step="3" aria-label="View production release">
+                      <span class="timeline-node mx-auto grid h-9 w-9 place-items-center border border-ink/30 bg-[#e3e8e5] text-[8px]">LIVE</span>
+                      <strong class="mt-3 block text-[8px]">LEARN</strong>
+                    </button>
+                  </div>
+
+                  <div class="mt-5 grid gap-4 border border-ink/25 bg-[#f7f8f5] p-4 sm:grid-cols-[1fr_210px]">
+                    <div>
+                      <div class="flex items-center justify-between text-[8px]">
+                        <label for="timeline-range" class="eyebrow text-ink/45">Scrub the build</label>
+                        <span id="timeline-date" class="font-bold text-mintdark">DAY 01</span>
+                      </div>
+                      <input
+                        id="timeline-range"
+                        class="timeline-range mt-4"
+                        type="range"
+                        min="0"
+                        max="3"
+                        step="1"
+                        value="0"
+                        aria-valuetext="Day one: narrow the product"
+                      />
+                      <div class="mt-1 flex justify-between text-[7px] text-ink/35">
+                        <span>START</span><span>TEST</span><span>BUILD</span><span>LIVE</span>
                       </div>
                     </div>
-                  </div>
-                  <div class="space-y-4 text-[9px]">
-                    <div>
-                      <div class="mb-1 flex justify-between"><span>STEALTH</span><span class="text-mint">94</span></div>
-                      <div class="h-1 bg-white/10"><div class="h-full w-[94%] bg-mint"></div></div>
-                    </div>
-                    <div>
-                      <div class="mb-1 flex justify-between"><span>FORMATION</span><span class="text-mint">81</span></div>
-                      <div class="h-1 bg-white/10"><div class="h-full w-[81%] bg-mint"></div></div>
-                    </div>
-                    <div>
-                      <div class="mb-1 flex justify-between"><span>EXIT WINDOW</span><span class="text-cyan">76</span></div>
-                      <div class="h-1 bg-white/10"><div class="h-full w-[76%] bg-cyan"></div></div>
+                    <div class="border-t border-ink/20 pt-4 sm:border-l sm:border-t-0 sm:pl-4 sm:pt-0">
+                      <div id="timeline-phase" class="eyebrow text-mintdark">Narrow the product</div>
+                      <p id="timeline-output" class="mt-2 text-[9px] leading-4 text-ink/60">The smallest valuable release is clear.</p>
                     </div>
                   </div>
-                </div>
-              </section>
 
-              <section class="border-b border-white/10 p-5 lg:p-6">
-                <div class="mb-4 flex items-center justify-between">
-                  <div>
-                    <div class="mini-label text-[8px] text-white/35">Secure channels</div>
-                    <h2 class="mt-1 font-display text-xl font-black text-white">TEAM LINK</h2>
-                  </div>
-                  <span class="text-[8px] text-white/30">4 NODES</span>
-                </div>
-                <div class="space-y-2">
-                  <button class="channel flex w-full items-center gap-3 border border-white/10 p-3 text-left hover:border-mint/60" data-channel="EXIA">
-                    <span class="grid h-8 w-8 place-items-center border border-mint/40 text-[9px] text-mint">01</span>
-                    <span class="min-w-0 flex-1">
-                      <span class="block text-[10px] text-white">GN-001 EXIA</span>
-                      <span class="mt-1 block text-[8px] text-white/35">SETSUNA F. SEIEI / LINKED</span>
-                    </span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
-                  </button>
-                  <button class="channel flex w-full items-center gap-3 border border-white/10 p-3 text-left hover:border-mint/60" data-channel="DYNAMES">
-                    <span class="grid h-8 w-8 place-items-center border border-mint/40 text-[9px] text-mint">02</span>
-                    <span class="min-w-0 flex-1">
-                      <span class="block text-[10px] text-white">GN-002 DYNAMES</span>
-                      <span class="mt-1 block text-[8px] text-white/35">LOCKON STRATOS / LINKED</span>
-                    </span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
-                  </button>
-                  <button class="channel flex w-full items-center gap-3 border border-white/10 p-3 text-left hover:border-mint/60" data-channel="KYRIOS">
-                    <span class="grid h-8 w-8 place-items-center border border-mint/40 text-[9px] text-mint">03</span>
-                    <span class="min-w-0 flex-1">
-                      <span class="block text-[10px] text-white">GN-003 KYRIOS</span>
-                      <span class="mt-1 block text-[8px] text-white/35">ALLELUJAH H. / LINKED</span>
-                    </span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-mint"></span>
-                  </button>
-                  <button class="channel flex w-full items-center gap-3 border border-white/10 p-3 text-left hover:border-cyan/60" data-channel="VIRTUE">
-                    <span class="grid h-8 w-8 place-items-center border border-cyan/40 text-[9px] text-cyan">05</span>
-                    <span class="min-w-0 flex-1">
-                      <span class="block text-[10px] text-white">GN-005 VIRTUE</span>
-                      <span class="mt-1 block text-[8px] text-white/35">TIERIA ERDE / STANDBY</span>
-                    </span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-cyan/70"></span>
-                  </button>
-                </div>
-                <div id="channel-message" class="mt-3 min-h-5 text-[8px] text-mint"></div>
-              </section>
-
-              <section class="p-5 lg:p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <div class="mini-label text-[8px] text-white/35">System load / Veda cluster</div>
-                    <h2 class="mt-1 font-display text-xl font-black text-white">QUANTUM CORE</h2>
-                  </div>
-                  <div class="text-right">
-                    <div class="text-xl text-mint">99.98</div>
-                    <div class="text-[7px] text-white/30">UPTIME</div>
+                  <div class="mt-6 border-l border-ink/30">
+                    <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                      <span class="eyebrow text-mintdark">You bring</span>
+                      <p class="font-display text-xl font-semibold">The opportunity, customer knowledge, and fast decisions.</p>
+                    </div>
+                    <div class="grid gap-3 border-b border-ink/20 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                      <span class="eyebrow text-mintdark">We own</span>
+                      <p class="font-display text-xl font-semibold">Product definition, design, engineering, launch, and momentum.</p>
+                    </div>
+                    <div class="grid gap-3 py-5 pl-5 sm:grid-cols-[120px_1fr]">
+                      <span class="eyebrow text-mintdark">You keep</span>
+                      <p class="font-display text-xl font-semibold">The software, infrastructure, knowledge, and next move.</p>
+                    </div>
                   </div>
                 </div>
-                <div class="mt-5 grid grid-cols-8 gap-1">
-                  <span class="h-14 bg-mint/20"></span>
-                  <span class="h-14 bg-mint/30"></span>
-                  <span class="h-14 bg-mint/45"></span>
-                  <span class="h-14 bg-mint/70"></span>
-                  <span class="h-14 bg-mint"></span>
-                  <span class="h-14 bg-mint/65"></span>
-                  <span class="h-14 bg-mint/35"></span>
-                  <span class="h-14 bg-mint/20"></span>
-                </div>
-                <div class="mt-3 flex justify-between text-[7px] text-white/25">
-                  <span>NODE A-01</span>
-                  <span>10.84 PHz</span>
-                  <span>THERMAL 32°</span>
-                </div>
-              </section>
-            </aside>
-          </section>
 
-          <footer class="flex flex-wrap items-center justify-between gap-2 border-t border-white/10 bg-[#0b0f0e] px-4 py-2 text-[7px] text-white/25 lg:px-6">
-            <span>VEDA ACCESS / OBSERVER CLEARANCE 04</span>
-            <span id="footer-status">ALL SYSTEMS NOMINAL</span>
-            <span>KEYS 1–4: SELECT CONTACT · SPACE: SWEEP</span>
-          </footer>
+                <div class="col-span-12 mt-3 lg:col-start-3 lg:col-span-10">
+                  <div class="cut-panel grid border border-ink/30 bg-[#17211e] text-[#e4ebe8] md:grid-cols-[180px_1fr_1fr_1fr]">
+                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                      <div class="eyebrow text-mint">Typical signal</div>
+                      <div class="mt-5 text-4xl font-black text-mint">4–8</div>
+                      <div class="mt-1 text-[8px] text-white/50">WEEKS TO A MEANINGFUL RELEASE</div>
+                    </div>
+                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                      <span class="text-[8px] text-white/40">WEEK 01</span>
+                      <strong class="mt-3 block font-display text-xl">SOMETHING WORKS</strong>
+                      <p class="mt-2 text-[9px] leading-4 text-white/50">A real flow you can use and react to.</p>
+                    </div>
+                    <div class="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                      <span class="text-[8px] text-white/40">WEEKS 02–05</span>
+                      <strong class="mt-3 block font-display text-xl">THE SYSTEM FORMS</strong>
+                      <p class="mt-2 text-[9px] leading-4 text-white/50">Core features, integrations, tests, and deployment.</p>
+                    </div>
+                    <div class="p-5">
+                      <span class="text-[8px] text-white/40">RELEASE</span>
+                      <strong class="mt-3 block font-display text-xl">USERS CREATE SIGNAL</strong>
+                      <p class="mt-2 text-[9px] leading-4 text-white/50">You learn earlier and invest with better information.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="leverage" class="scroll-mt-20 overflow-hidden border-b border-ink/20 bg-[#f7f8f5] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+                <div class="col-span-12 flex items-center gap-3">
+                  <span class="section-index">03</span>
+                  <span class="eyebrow text-mintdark">Why a small team can move this fast</span>
+                </div>
+
+                <div class="col-span-12 lg:col-span-5">
+                  <span class="eyebrow text-mintdark">Machine leverage</span>
+                  <h2 class="mt-4 font-display text-[clamp(5rem,12vw,11rem)] font-black leading-[0.75] tracking-[-0.08em] text-mintdark">AI</h2>
+                  <p class="mt-7 max-w-md font-display text-2xl font-semibold leading-tight">
+                    does more of the repetitive work.
+                  </p>
+                  <p class="mt-4 max-w-md text-[10px] leading-5 text-ink/60">
+                    We explore options, implement, test, document, and automate faster than a traditional team.
+                  </p>
+                </div>
+
+                <div class="col-span-12 hidden place-items-center lg:col-span-1 lg:grid">
+                  <div class="h-full w-px bg-ink/20"></div>
+                </div>
+
+                <div class="col-span-12 lg:col-span-6 lg:pt-20">
+                  <span class="eyebrow text-mintdark">Human judgment</span>
+                  <h2 class="mt-4 max-w-3xl font-display text-[clamp(3.6rem,7vw,7rem)] font-black leading-[0.82] tracking-[-0.06em]">
+                    EXPERIENCE
+                  </h2>
+                  <p class="mt-7 max-w-lg font-display text-2xl font-semibold leading-tight">
+                    decides what should exist and how it should hold up.
+                  </p>
+                  <p class="mt-4 max-w-lg text-[10px] leading-5 text-ink/60">
+                    Senior people choose the product, architecture, tradeoffs, quality bar, and path to market.
+                  </p>
+                </div>
+
+                <div class="col-span-12 mt-6 grid gap-3 lg:col-start-3 lg:col-span-10 lg:grid-cols-[minmax(0,1fr)_250px]">
+                  <div class="chart-shell p-4 sm:p-5">
+                    <div class="flex flex-wrap items-start justify-between gap-4 border-b border-ink/15 pb-3">
+                      <div>
+                        <div class="eyebrow text-ink/40">Illustrative engagement model</div>
+                        <h3 class="mt-2 font-display text-xl font-black">VALUE RISES AS UNCERTAINTY FALLS</h3>
+                      </div>
+                      <div class="flex gap-4 text-[8px]">
+                        <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-mintdark"></i> CUSTOMER VALUE</span>
+                        <span class="flex items-center gap-2"><i class="h-0.5 w-4 bg-signal"></i> UNCERTAINTY</span>
+                      </div>
+                    </div>
+                    <canvas
+                      id="value-chart"
+                      class="mt-3 h-[280px] w-full touch-none"
+                      width="900"
+                      height="280"
+                      role="img"
+                      aria-label="Illustrative line chart showing customer value increasing and product uncertainty decreasing over six weeks"
+                    >
+                      Customer value rises while product uncertainty falls over a six-week illustrative engagement.
+                    </canvas>
+                    <div class="grid grid-cols-3 border-t border-ink/15 pt-3 text-[8px]">
+                      <span>POINT: <strong id="chart-week">WEEK 03</strong></span>
+                      <span class="text-center">VALUE: <strong id="chart-value" class="text-mintdark">52</strong></span>
+                      <span class="text-right">UNCERTAINTY: <strong id="chart-uncertainty" class="text-signal">43</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-rows-3 gap-px border border-ink/20 bg-ink/20">
+                    <div class="bg-[#eef1ee] p-5">
+                      <span class="eyebrow text-ink/40">Result 01</span>
+                      <strong class="mt-3 block font-display text-2xl">FEWER HIRES TO START</strong>
+                    </div>
+                    <div class="bg-[#eef1ee] p-5">
+                      <span class="eyebrow text-ink/40">Result 02</span>
+                      <strong class="mt-3 block font-display text-2xl">REAL FEEDBACK EARLIER</strong>
+                    </div>
+                    <div class="bg-[#eef1ee] p-5">
+                      <span class="eyebrow text-ink/40">Result 03</span>
+                      <strong class="mt-3 block font-display text-2xl">LESS RISK BEFORE SCALE</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="contact" class="scroll-mt-20 bg-[#cbd3d0] px-4 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+              <div class="grid grid-cols-12 gap-x-4 gap-y-10 lg:gap-x-6">
+                <div class="col-span-12 lg:col-span-7">
+                  <div class="flex items-center gap-3">
+                    <span class="section-index">04</span>
+                    <span class="eyebrow text-mintdark">Start here</span>
+                  </div>
+                  <h2 class="mt-7 font-display text-[clamp(4rem,8.5vw,8.5rem)] font-black leading-[0.82] tracking-[-0.065em]">
+                    WHAT NEEDS<br />TO EXIST?
+                  </h2>
+                  <div class="mt-7 grid max-w-2xl gap-5 border-t border-ink/25 pt-5 sm:grid-cols-2">
+                    <p class="font-display text-xl font-semibold leading-snug">
+                      Tell us the idea, the hard part, and the date that matters.
+                    </p>
+                    <p class="text-[9px] leading-5 text-ink/55">
+                      No deck, polished brief, or long sales process. We’ll tell you quickly if we can help and what we think the first move should be.
+                    </p>
+                  </div>
+                </div>
+
+                <form id="contact-form" class="cut-panel screen col-span-12 p-4 sm:p-6 lg:col-span-5 lg:mt-20">
+                  <div class="flex items-center justify-between border-b border-ink/20 pb-3">
+                    <div class="eyebrow text-ink/40">New build / BR-0001</div>
+                    <div class="flex items-center gap-2 text-[8px] text-mintdark"><span class="status-dot"></span> OPEN</div>
+                  </div>
+                  <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                    <label class="text-[8px] tracking-[0.1em]">
+                      NAME
+                      <input class="field mt-2 px-3 py-3 text-[11px]" name="name" autocomplete="name" required />
+                    </label>
+                    <label class="text-[8px] tracking-[0.1em]">
+                      WORK EMAIL
+                      <input class="field mt-2 px-3 py-3 text-[11px]" type="email" name="email" autocomplete="email" required />
+                    </label>
+                  </div>
+                  <label class="mt-4 block text-[8px] tracking-[0.1em]">
+                    THE SHORT VERSION
+                    <textarea
+                      class="field mt-2 min-h-28 resize-y px-3 py-3 text-[11px] leading-5"
+                      name="brief"
+                      placeholder="We want to build… The hard part is… We need it by…"
+                      required
+                    ></textarea>
+                  </label>
+                  <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                    <span class="text-[8px] text-ink/45">RESPONSE ≤ 1 BUSINESS DAY</span>
+                    <button class="cta-primary px-5 py-3.5 text-[9px] font-bold tracking-[0.1em]" type="submit">SEND →</button>
+                  </div>
+                  <div id="form-status" class="mt-4 hidden border border-mintdark/40 bg-[#dff7f0] p-3 text-[9px] text-mintdark" role="status"></div>
+                </form>
+
+                <div class="col-span-12 flex flex-wrap items-center justify-between gap-5 border-t border-ink/25 pt-5 text-[8px] text-ink/50">
+                  <span>FIELD/01 — PRODUCT ENGINEERING</span>
+                  <span>STARTUPS / GREENFIELD / ACCELERATION</span>
+                  <span>YOU OWN THE OUTPUT</span>
+                </div>
+              </div>
+            </section>
+          </main>
         </div>
-      </main>
+      </div>
     </div>
 
     <div
       id="toast"
-      class="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 translate-y-4 border border-mint/50 bg-[#101614]/95 px-4 py-3 text-[9px] tracking-[0.08em] text-mint opacity-0 shadow-2xl transition-all duration-200"
+      class="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 translate-y-3 border border-mint bg-[#17211e] px-4 py-3 text-[9px] tracking-[0.1em] text-mint opacity-0 shadow-xl transition-all"
       role="status"
       aria-live="polite"
     ></div>
 
     <script>
-      const shell = document.getElementById("app-shell");
-      const targets = [...document.querySelectorAll(".target")];
-      const rows = [...document.querySelectorAll(".data-row")];
+      const profiles = {
+        startup: {
+          label: "Selected / new startup",
+          title: "GET TO REAL USERS BEFORE YOU BUILD A BIG TEAM.",
+          copy: "We turn the strongest version of your idea into a production product, so you can learn, sell, and raise with evidence.",
+          results: ["+ Working product", "+ Production foundation", "+ First user signal", "+ Full ownership"],
+        },
+        company: {
+          label: "Selected / internal greenfield",
+          title: "CREATE MOMENTUM WITHOUT WAITING FOR PERFECT CONDITIONS.",
+          copy: "We form a focused delivery unit around the opportunity and build within your real security, data, and technology constraints.",
+          results: ["+ Focused delivery team", "+ Enterprise-ready fit", "+ Visible progress", "+ Clean handoff"],
+        },
+        existing: {
+          label: "Selected / existing product",
+          title: "SHIP THE IMPORTANT WORK YOUR TEAM CANNOT GET TO.",
+          copy: "We take ownership of the blocked outcome, solve the underlying constraint, and deliver without adding more load to your team.",
+          results: ["+ Critical work shipped", "+ Constraint removed", "+ Senior capacity", "+ Lower team pressure"],
+        },
+      };
+
+      const timelineData = [
+        {
+          date: "DAY 01",
+          phase: "NARROW THE PRODUCT",
+          output: "The smallest valuable release is clear.",
+          aria: "Day one: narrow the product",
+        },
+        {
+          date: "WEEK 01",
+          phase: "TEST THE HARD PART",
+          output: "A working flow is in front of real people.",
+          aria: "Week one: test the hardest part",
+        },
+        {
+          date: "WEEKS 02–05",
+          phase: "BUILD THE REAL SYSTEM",
+          output: "Production features, integrations, and controls come online.",
+          aria: "Weeks two through five: build the production system",
+        },
+        {
+          date: "LIVE",
+          phase: "RELEASE + LEARN",
+          output: "Customers create evidence for the next investment.",
+          aria: "Live release: learn from customers",
+        },
+      ];
+
       const toast = document.getElementById("toast");
       let toastTimer;
-      let scanning = false;
 
       const showToast = (message) => {
         toast.textContent = message;
-        toast.classList.remove("opacity-0", "translate-y-4");
+        toast.classList.remove("opacity-0", "translate-y-3");
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => {
-          toast.classList.add("opacity-0", "translate-y-4");
-        }, 2200);
+          toast.classList.add("opacity-0", "translate-y-3");
+        }, 2000);
       };
 
-      const selectContact = (id) => {
-        const target = targets.find((item) => item.dataset.id === id);
-        if (!target) return;
-
-        targets.forEach((item) => item.classList.toggle("active", item === target));
-        rows.forEach((row) => row.classList.toggle("selected", row.dataset.contact === id));
-
-        document.getElementById("selected-id").textContent = target.dataset.id;
-        document.getElementById("selected-name").textContent = target.dataset.name;
-        document.getElementById("selected-type").textContent = target.dataset.type;
-        document.getElementById("selected-range").textContent = `${target.dataset.range} KM`;
-        document.getElementById("selected-vector").textContent = target.dataset.vector;
-
-        const hostile = target.dataset.type === "HOSTILE";
-        document.getElementById("selected-id").className = `mt-4 text-3xl font-black ${hostile ? "text-warning" : "text-mint"}`;
-        document.getElementById("selected-type").className = `mt-1 ${hostile ? "text-warning" : "text-mint"}`;
-        document.getElementById("track-copy").textContent = hostile
-          ? "Unverified armament signature. Threat prediction elevated."
-          : "Quantum link stable. Tactical prediction available.";
-
-        showToast(`${id} // CONTACT ACQUIRED`);
-      };
-
-      targets.forEach((target) => {
-        target.addEventListener("click", () => selectContact(target.dataset.id));
-      });
-
-      document.querySelectorAll(".row-select").forEach((button) => {
-        button.addEventListener("click", () => selectContact(button.dataset.contact));
-      });
-
-      document.querySelectorAll(".filter").forEach((button) => {
+      document.querySelectorAll(".flow-row").forEach((button) => {
         button.addEventListener("click", () => {
-          document.querySelectorAll(".filter").forEach((item) => {
-            item.classList.remove("active", "bg-mint", "text-ink", "border-mint");
-            item.classList.add("border-white/15");
-          });
-          button.classList.add("active", "bg-mint", "text-ink", "border-mint");
-          button.classList.remove("border-white/15");
-          rows.forEach((row) => {
-            row.hidden = button.dataset.filter !== "ALL" && row.dataset.affiliation !== button.dataset.filter;
-          });
+          const profile = profiles[button.dataset.profile];
+          document.querySelectorAll(".flow-row").forEach((item) => item.classList.toggle("active", item === button));
+          document.getElementById("profile-label").textContent = profile.label;
+          document.getElementById("profile-title").textContent = profile.title;
+          document.getElementById("profile-copy").textContent = profile.copy;
+          document.getElementById("profile-results").innerHTML = profile.results.map((item) => `<li>${item}</li>`).join("");
         });
       });
 
-      const runScan = () => {
-        if (scanning) return;
-        scanning = true;
-        shell.classList.add("scan-active");
-        document.getElementById("scan-button").textContent = "SWEEPING...";
-        document.getElementById("scan-indicator").textContent = "ACTIVE SCAN";
-        document.getElementById("map-status").textContent = "CNTL SCANNING";
-        document.getElementById("footer-status").textContent = "LONG-RANGE SWEEP IN PROGRESS";
-        showToast("LONG-RANGE PARTICLE SWEEP INITIATED");
+      const timelineRange = document.getElementById("timeline-range");
+      const timelineStops = [...document.querySelectorAll(".timeline-stop")];
 
-        setTimeout(() => {
-          scanning = false;
-          shell.classList.remove("scan-active");
-          document.getElementById("scan-button").textContent = "INITIATE SWEEP";
-          document.getElementById("scan-indicator").textContent = "PASSIVE SCAN";
-          document.getElementById("map-status").textContent = "CNTL 1800.400";
-          document.getElementById("footer-status").textContent = "4 CONTACTS VERIFIED / NO NEW RETURNS";
-          showToast("SWEEP COMPLETE // 4 CONTACTS VERIFIED");
-        }, 2400);
+      const setTimeline = (step) => {
+        const index = Number(step);
+        const point = timelineData[index];
+        timelineRange.value = String(index);
+        timelineRange.setAttribute("aria-valuetext", point.aria);
+        document.getElementById("timeline-date").textContent = point.date;
+        document.getElementById("timeline-phase").textContent = point.phase;
+        document.getElementById("timeline-output").textContent = point.output;
+        timelineStops.forEach((stop, stopIndex) => {
+          stop.classList.toggle("complete", stopIndex < index);
+          stop.classList.toggle("active", stopIndex === index);
+        });
       };
 
-      document.getElementById("scan-button").addEventListener("click", runScan);
-
-      document.getElementById("track-button").addEventListener("click", (event) => {
-        event.currentTarget.classList.toggle("border-mint");
-        event.currentTarget.classList.toggle("text-mint");
-        const isTracking = event.currentTarget.classList.contains("text-mint");
-        event.currentTarget.textContent = isTracking ? "TRACK LOCKED" : "MAINTAIN TRACK";
-        showToast(isTracking ? "PREDICTIVE TRACK LOCKED" : "TRACK RETURNED TO PASSIVE");
+      timelineRange.addEventListener("input", (event) => setTimeline(event.target.value));
+      timelineStops.forEach((stop) => {
+        stop.addEventListener("click", () => setTimeline(stop.dataset.timelineStep));
       });
 
-      document.querySelectorAll(".channel").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.getElementById("channel-message").textContent = `${button.dataset.channel} // ENCRYPTED CHANNEL OPEN`;
-          showToast(`SECURE LINK OPENED: ${button.dataset.channel}`);
+      const hero = document.getElementById("hero");
+      const signalProgress = document.getElementById("signal-progress");
+      const signalNodes = [...document.querySelectorAll("[data-signal-node]")];
+      let signalFrame;
+
+      const updateHeroSignal = () => {
+        signalFrame = null;
+        const heroTop = hero.offsetTop;
+        const travelled = window.scrollY + window.innerHeight * 0.2 - heroTop;
+        const progress = Math.max(0, Math.min(1, travelled / (hero.offsetHeight * 0.72)));
+        signalProgress.style.width = `${progress * 100}%`;
+        signalNodes.forEach((node, index) => {
+          const threshold = index / (signalNodes.length - 1);
+          node.classList.toggle("reached", progress + 0.04 >= threshold);
         });
-      });
+      };
 
-      document.querySelectorAll(".tab").forEach((tab) => {
-        tab.addEventListener("click", () => {
-          document.querySelectorAll(".tab").forEach((item) => item.classList.toggle("active", item.dataset.view === tab.dataset.view));
-          showToast(`${tab.dataset.view} LAYER SELECTED`);
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!signalFrame) signalFrame = requestAnimationFrame(updateHeroSignal);
+        },
+        { passive: true },
+      );
+      window.addEventListener("resize", updateHeroSignal);
+      updateHeroSignal();
+
+      const chart = document.getElementById("value-chart");
+      const chartContext = chart.getContext("2d");
+      const chartSeries = {
+        value: [8, 15, 30, 52, 72, 86, 94],
+        uncertainty: [95, 76, 61, 43, 30, 19, 12],
+      };
+      let chartIndex = 3;
+
+      const renderChart = () => {
+        const bounds = chart.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        chart.width = Math.round(bounds.width * ratio);
+        chart.height = Math.round(bounds.height * ratio);
+        chartContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+        chartContext.clearRect(0, 0, bounds.width, bounds.height);
+
+        const plot = {
+          left: 36,
+          top: 18,
+          right: bounds.width - 18,
+          bottom: bounds.height - 30,
+        };
+        const plotWidth = plot.right - plot.left;
+        const plotHeight = plot.bottom - plot.top;
+        const xFor = (index) => plot.left + (index / 6) * plotWidth;
+        const yFor = (value) => plot.bottom - (value / 100) * plotHeight;
+
+        chartContext.font = "8px monospace";
+        chartContext.fillStyle = "rgba(21, 32, 29, 0.45)";
+        chartContext.strokeStyle = "rgba(21, 32, 29, 0.13)";
+        chartContext.lineWidth = 1;
+
+        [0, 25, 50, 75, 100].forEach((value) => {
+          const y = yFor(value);
+          chartContext.beginPath();
+          chartContext.moveTo(plot.left, y);
+          chartContext.lineTo(plot.right, y);
+          chartContext.stroke();
+          chartContext.fillText(String(value), 7, y + 3);
         });
-      });
 
-      document.querySelectorAll(".hardware-key").forEach((key) => {
-        key.addEventListener("click", () => {
-          document.querySelectorAll(".hardware-key").forEach((item) => item.classList.remove("active"));
-          key.classList.add("active");
-          showToast(`${key.dataset.side} BUS SELECTED`);
-        });
-      });
-
-      document.getElementById("menu-button").addEventListener("click", (event) => {
-        const menu = document.getElementById("mobile-nav");
-        const open = menu.classList.toggle("hidden");
-        menu.classList.toggle("grid", !open);
-        event.currentTarget.setAttribute("aria-expanded", String(!open));
-      });
-
-      document.addEventListener("keydown", (event) => {
-        if (event.target.matches("button, input, select, textarea")) return;
-        if (event.code === "Space") {
-          event.preventDefault();
-          runScan();
+        for (let index = 0; index < 7; index += 1) {
+          const x = xFor(index);
+          chartContext.beginPath();
+          chartContext.moveTo(x, plot.top);
+          chartContext.lineTo(x, plot.bottom);
+          chartContext.stroke();
+          chartContext.fillText(`W${index}`, x - 6, bounds.height - 8);
         }
-        const index = Number(event.key) - 1;
-        if (index >= 0 && index < targets.length) selectContact(targets[index].dataset.id);
+
+        const drawSeries = (values, color, dashed) => {
+          chartContext.save();
+          chartContext.strokeStyle = color;
+          chartContext.lineWidth = 2.25;
+          chartContext.setLineDash(dashed ? [6, 5] : []);
+          chartContext.beginPath();
+          values.forEach((value, index) => {
+            const x = xFor(index);
+            const y = yFor(value);
+            if (index === 0) chartContext.moveTo(x, y);
+            else chartContext.lineTo(x, y);
+          });
+          chartContext.stroke();
+          chartContext.restore();
+
+          values.forEach((value, index) => {
+            chartContext.beginPath();
+            chartContext.arc(xFor(index), yFor(value), index === chartIndex ? 5 : 2.75, 0, Math.PI * 2);
+            chartContext.fillStyle = index === chartIndex ? "#f7f8f5" : color;
+            chartContext.fill();
+            chartContext.strokeStyle = color;
+            chartContext.lineWidth = 2;
+            chartContext.stroke();
+          });
+        };
+
+        const cursorX = xFor(chartIndex);
+        chartContext.save();
+        chartContext.strokeStyle = "rgba(21, 32, 29, 0.48)";
+        chartContext.setLineDash([2, 4]);
+        chartContext.beginPath();
+        chartContext.moveTo(cursorX, plot.top);
+        chartContext.lineTo(cursorX, plot.bottom);
+        chartContext.stroke();
+        chartContext.restore();
+
+        drawSeries(chartSeries.value, "#087466", false);
+        drawSeries(chartSeries.uncertainty, "#ff6b57", true);
+
+        document.getElementById("chart-week").textContent = `WEEK 0${chartIndex}`;
+        document.getElementById("chart-value").textContent = chartSeries.value[chartIndex];
+        document.getElementById("chart-uncertainty").textContent = chartSeries.uncertainty[chartIndex];
+      };
+
+      chart.addEventListener("pointermove", (event) => {
+        const bounds = chart.getBoundingClientRect();
+        const relativeX = Math.max(0, Math.min(bounds.width, event.clientX - bounds.left));
+        chartIndex = Math.max(0, Math.min(6, Math.round(((relativeX - 36) / Math.max(1, bounds.width - 54)) * 6)));
+        renderChart();
       });
 
-      const updateClock = () => {
-        const now = new Date();
-        const time = now.toLocaleTimeString("en-US", { hour12: false });
-        document.getElementById("clock").textContent = `${time} / LAGRANGE 3`;
-      };
-      updateClock();
-      setInterval(updateClock, 1000);
+      chart.addEventListener("pointerleave", () => {
+        chartIndex = 3;
+        renderChart();
+      });
+
+      new ResizeObserver(renderChart).observe(chart);
+      renderChart();
+
+      const menuButton = document.getElementById("menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuButton.addEventListener("click", () => {
+        const hidden = mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("grid", !hidden);
+        menuButton.setAttribute("aria-expanded", String(!hidden));
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("grid");
+          menuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const current = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!current) return;
+          document.querySelectorAll("[data-rail]").forEach((link) => {
+            link.classList.toggle("active", link.dataset.rail === current.target.id);
+          });
+        },
+        { rootMargin: "-20% 0px -55% 0px", threshold: [0.05, 0.2, 0.5] },
+      );
+
+      document.querySelectorAll("main section[id]").forEach((section) => observer.observe(section));
+
+      document.getElementById("contact-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const status = document.getElementById("form-status");
+        status.textContent = "MESSAGE CAPTURED // Prototype mode: connect this form to your email or CRM.";
+        status.classList.remove("hidden");
+        showToast("MESSAGE CAPTURED");
+      });
     </script>
   </body>
 </html>
